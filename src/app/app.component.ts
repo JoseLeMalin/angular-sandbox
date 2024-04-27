@@ -1,5 +1,4 @@
-import { Component, inject, Inject } from '@angular/core';
-// import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
 import { HomeComponent } from './home/home.component';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';

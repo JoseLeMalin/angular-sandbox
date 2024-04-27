@@ -3,7 +3,7 @@
     column-gap: 14px;
     row-gap: 14px;
     grid-template-columns: repeat(auto-fill, minmax(400px, 400px));
-    margin-top: 50px;
+    margin-top: 1rem;
     justify-content: space-around;
   }
   
@@ -19,7 +19,7 @@
   button {
     padding: 10px;
     border: solid 1px var(--primary-color);
-    background: var(--primary-color);
+    background: black;
     color: white;
     border-radius: 8px;
   }
@@ -29,7 +29,7 @@
         grid-template-columns: repeat(2, 1fr);
     }
     input[type="text"] {
-        width: 70%;
+        width: 20%;
     }   
   }
   

@@ -16,8 +16,7 @@ import { CommonModule } from '@angular/common';
               class="brand-logo"
               src="/assets/logo.svg"
               alt="logo"
-              aria-hidden="true"
-            />
+              aria-hidden="true" />
           </button>
         </div>
         <div class="heroes-btn-class flex-initial justify-center align-middle">
@@ -26,8 +25,7 @@ import { CommonModule } from '@angular/common';
             class="bg-violet-500 text-gray-100 hover:bg-sky-400 hover:text-black shadow-lg rounded-md w-32 h-7 text-lg focus:ring-violet-300 
              light:from-neutral-300 light:focus:outline-none light:focus:ring 
              dark:bg-purple-500 dark:text-white dark:hover:bg-sky-400 dark:hover:text-black"
-            [routerLink]="['/heroes']"
-          >
+            [routerLink]="['/heroes']">
             Go to Heroes
           </button>
         </div>
@@ -44,8 +42,7 @@ import { CommonModule } from '@angular/common';
              dark:bg-purple-500 dark:text-white dark:hover:bg-sky-400 dark:hover:text-black"
             aria-atomic="true"
             aria-details="Back button to reach previous page"
-            type="button"
-          >
+            type="button">
             Back
           </button>
         </div>
@@ -53,15 +50,15 @@ import { CommonModule } from '@angular/common';
           <router-outlet></router-outlet>
         </div>
       </section>
-      <footer class="brand-name container bg-slate-400 flex flex-column mt-2 pt-2gap-6">
+      <footer
+        class="brand-name container bg-slate-400 flex flex-column mt-2 pt-2gap-6">
         <div class="logo-class flex-none">
           <button [routerLink]="['/']">
             <img
               class="brand-logo"
               src="/assets/logo.svg"
               alt="logo"
-              aria-hidden="true"
-            />
+              aria-hidden="true" />
           </button>
         </div>
         <div class="heroes-btn-class flex-initial justify-center align-middle">
@@ -70,8 +67,7 @@ import { CommonModule } from '@angular/common';
             class="bg-violet-500 text-gray-100 hover:bg-sky-400 hover:text-black shadow-lg rounded-md w-32 h-7 text-lg focus:ring-violet-300 
              light:from-neutral-300 light:focus:outline-none light:focus:ring 
              dark:bg-purple-500 dark:text-white dark:hover:bg-sky-400 dark:hover:text-black"
-            [routerLink]="['/heroes']"
-          >
+            [routerLink]="['/heroes']">
             Go to Heroes
           </button>
         </div>

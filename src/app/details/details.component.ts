@@ -14,8 +14,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
       <img
         class="listing-photo"
         [src]="housingLocation?.photo"
-        alt="Exterior photo of {{ housingLocation?.name }}"
-      />
+        alt="Exterior photo of {{ housingLocation?.name }}" />
       <section class="listing-description">
         <h2 class="listing-heading">{{ housingLocation?.name }}</h2>
         <p class="listing-location">
@@ -51,8 +50,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
              dark:bg-purple-500 dark:text-white dark:hover:bg-sky-400 dark:hover:text-black"
             aria-atomic="true"
             aria-details="Back button to reach previous page"
-            type="submit"
-          >
+            type="submit">
             Apply now
           </button>
         </form>
@@ -75,7 +73,7 @@ export class DetailsComponent {
     const housingLocationId = Number(this.route.snapshot.params['id']);
     this.housingService
       .getHousingLocationById(housingLocationId)
-      .then((houseItem) => (this.housingLocation = houseItem));
+      .then(houseItem => (this.housingLocation = houseItem));
   }
 
   goBack() {

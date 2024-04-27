@@ -1,16 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, inject, Inject } from '@angular/core';
 // import { RouterOutlet } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HomeComponent, RouterModule],
+  imports: [CommonModule, HomeComponent, RouterModule],
   template: `
-    <main class="px-8 bg-gray-300">
-      <header class="brand-name mb-6 flex-1">
-        <div class="w-fit-content">
+    <main class="bg-gray-300 h-full">
+      <header class="brand-name container flex flex-column mb-6 gap-6">
+        <div class="logo-class flex-none">
           <button [routerLink]="['/']">
             <img
               class="brand-logo"
@@ -20,30 +21,67 @@ import { RouterModule } from '@angular/router';
             />
           </button>
         </div>
-      </header>
-
-      <section class="px-4 flex-1 flex-row">
-        <!-- <button pButton class="bg-grey" type="button" clickable>Back</button> -->
-        <button
-          pButton
-          routerLink="/"
-          class="bg-violet-500 text-gray-100 hover:bg-sky-400 hover:text-black shadow-lg rounded-md w-32 h-7 text-lg focus:ring-violet-300 
+        <div class="heroes-btn-class flex-initial justify-center align-middle">
+          <button
+            pButton
+            class="bg-violet-500 text-gray-100 hover:bg-sky-400 hover:text-black shadow-lg rounded-md w-32 h-7 text-lg focus:ring-violet-300 
              light:from-neutral-300 light:focus:outline-none light:focus:ring 
              dark:bg-purple-500 dark:text-white dark:hover:bg-sky-400 dark:hover:text-black"
-          aria-atomic="true"
-          aria-details="Back button to reach previous page"
-          type="button"
-        >
-          Back
-        </button>
+            [routerLink]="['/heroes']"
+          >
+            Go to Heroes
+          </button>
+        </div>
+      </header>
+
+      <section class="flex flex-col container p-4 gap-4 h-max">
+        <div *ngIf="router.url !== '/'" class="py-4 flex-1 flex-column">
+          <!-- <button pButton class="bg-grey" type="button" clickable>Back</button> -->
+          <button
+            pButton
+            routerLink="/"
+            class="bg-violet-500 text-gray-100 hover:bg-sky-400 hover:text-black shadow-lg rounded-md w-32 h-7 text-lg focus:ring-violet-300 
+             light:from-neutral-300 light:focus:outline-none light:focus:ring 
+             dark:bg-purple-500 dark:text-white dark:hover:bg-sky-400 dark:hover:text-black"
+            aria-atomic="true"
+            aria-details="Back button to reach previous page"
+            type="button"
+          >
+            Back
+          </button>
+        </div>
+        <div class="h-full">
+          <router-outlet></router-outlet>
+        </div>
       </section>
-      <section class="p-4 content">
-        <router-outlet></router-outlet>
-      </section>
+      <footer class="brand-name container bg-slate-400 flex flex-column mt-2 pt-2gap-6">
+        <div class="logo-class flex-none">
+          <button [routerLink]="['/']">
+            <img
+              class="brand-logo"
+              src="/assets/logo.svg"
+              alt="logo"
+              aria-hidden="true"
+            />
+          </button>
+        </div>
+        <div class="heroes-btn-class flex-initial justify-center align-middle">
+          <button
+            pButton
+            class="bg-violet-500 text-gray-100 hover:bg-sky-400 hover:text-black shadow-lg rounded-md w-32 h-7 text-lg focus:ring-violet-300 
+             light:from-neutral-300 light:focus:outline-none light:focus:ring 
+             dark:bg-purple-500 dark:text-white dark:hover:bg-sky-400 dark:hover:text-black"
+            [routerLink]="['/heroes']"
+          >
+            Go to Heroes
+          </button>
+        </div>
+      </footer>
     </main>
   `,
   styleUrl: './app.component.css',
 })
 export class AppComponent {
+  router = inject(Router);
   title = 'homes';
 }

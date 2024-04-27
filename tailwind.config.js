@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{html,ts}"],
+  content: ["./src/**/*.{html,ts}", "./src/*.{html,ts}"],
   theme: {
     // colors: {
     //   blue: "#1fb6ff",
@@ -13,6 +13,9 @@ module.exports = {
     //   gray: "#8492a6",
     //   "gray-light": "#d3dce6",
     // },
+    container: {
+      center: true,
+    },
     fontFamily: {
       sans: ["Graphik", "sans-serif"],
       serif: ["Merriweather", "serif"],
@@ -25,7 +28,6 @@ module.exports = {
       borderRadius: {
         "4xl": "2rem",
       },
-      
     },
   },
   plugins: [require("tailwindcss"), require("autoprefixer")],

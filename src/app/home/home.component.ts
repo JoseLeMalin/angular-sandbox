@@ -13,7 +13,7 @@ import { HousingService } from '../housing.service';
       <form>
         <input type="text" placeholder="Filter by city" />
         <button
-          class="primary"
+          class="hover:bg-sky-400 hover:text-black"
           type="button"
           onclick="alert('Not implemented yet')"
         >

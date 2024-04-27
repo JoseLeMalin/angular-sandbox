@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HousingService } from '../housing.service';
 import { HousingLocation } from '../housinglocation';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, ReactiveFormsModule],
   template: `
     <article>
       <img
@@ -31,26 +32,71 @@ import { HousingLocation } from '../housinglocation';
           </li>
         </ul>
       </section>
+      <section class="listing-apply">
+        <h2 class="section-heading">Apply now to live here</h2>
+        <form [formGroup]="applyForm" (submit)="submitApplication()">
+          <label for="first-name">First Name</label>
+          <input id="first-name" type="text" formControlName="firstName" />
+
+          <label for="last-name">Last Name</label>
+          <input id="last-name" type="text" formControlName="lastName" />
+
+          <label for="email">Email</label>
+          <input id="email" type="email" formControlName="email" />
+          <button
+            pButton
+            class="bg-red-500 text-gray-100 hover:bg-stone-500 hover:text-white shadow-lg rounded-md w-32 h-7 text-lg focus:ring-violet-300 
+            focus:outline-none focus:ring 
+             light:from-neutral-300
+             dark:bg-purple-500 dark:text-white dark:hover:bg-sky-400 dark:hover:text-black"
+            aria-atomic="true"
+            aria-details="Back button to reach previous page"
+            type="submit"
+          >
+            Apply now
+          </button>
+        </form>
+      </section>
     </article>
   `,
   styleUrl: './details.component.css',
 })
 export class DetailsComponent {
-  // router = new Router();
   route: ActivatedRoute = inject(ActivatedRoute);
   housingService = inject(HousingService);
-
-  // housingLocationId = -1;
   housingLocation: HousingLocation | undefined;
+  applyForm = new FormGroup({
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    email: new FormControl(''),
+  });
+
   constructor(private router: Router) {
     const housingLocationId = Number(this.route.snapshot.params['id']);
-    this.housingLocation =
-      this.housingService.getHousingLocationById(housingLocationId);
+    this.housingService
+      .getHousingLocationById(housingLocationId)
+      .then((houseItem) => (this.housingLocation = houseItem));
   }
 
   goBack() {
     console.log('ici ?');
 
     this.router.navigateByUrl('/');
+  }
+
+  /**
+   * Submits the application to the housing service.
+   *
+   * @param {string} firstName - The first name of the applicant.
+   * @param {string} lastName - The last name of the applicant.
+   * @param {string} email - The email address of the applicant.
+   * @return {void} This function does not return anything.
+   */
+  submitApplication() {
+    this.housingService.submitApplication(
+      this.applyForm.value.firstName ?? '',
+      this.applyForm.value.lastName ?? '',
+      this.applyForm.value.email ?? ''
+    );
   }
 }

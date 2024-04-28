@@ -27,9 +27,5 @@
       <label for="name">Hero name: </label>
       <input id="name" [(ngModel)]="hero.name" placeholder="name" />
     </div>
-
-    <app-hero-detail
-      *ngIf="hero === selectedHero"
-      [hero]="selectedHero"></app-hero-detail>
   </p-card>
 </div>

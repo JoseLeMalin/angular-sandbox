@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { HeroDetailComponent } from '../hero-detail/hero-detail.component';
 import { HeroService } from '../hero.service';
 import { MessageService } from '../message.service';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-heroes',
@@ -19,7 +20,8 @@ export class HeroesComponent implements OnInit {
   heroesList!: Hero[];
   constructor(
     private heroService: HeroService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -30,6 +32,7 @@ export class HeroesComponent implements OnInit {
 
     this.selectedHero = hero;
     this.messageService.add(`HeroesComponent: fetched hero id=${hero.id}`);
+    this.router.navigate(['/hero-detail', hero.id]);
   }
 
   async getHeroes(): Promise<void> {

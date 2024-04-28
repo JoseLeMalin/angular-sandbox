@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HeroDetailComponent } from '../hero-detail/hero-detail.component';
 import { HeroService } from '../hero.service';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-heroes',
@@ -16,11 +17,19 @@ import { HeroService } from '../hero.service';
 export class HeroesComponent implements OnInit {
   selectedHero?: Hero;
   heroesList!: Hero[];
-  constructor(private heroService: HeroService) {}
+  constructor(
+    private heroService: HeroService,
+    private messageService: MessageService
+  ) {}
+
+  ngOnInit(): void {
+    this.getHeroes();
+  }
   onSelect(hero: Hero): void {
     console.log('ici ?');
 
     this.selectedHero = hero;
+    this.messageService.add(`HeroesComponent: fetched hero id=${hero.id}`);
   }
 
   async getHeroes(): Promise<void> {
@@ -29,9 +38,6 @@ export class HeroesComponent implements OnInit {
       .subscribe(heroes => (this.heroesList = heroes));
   }
 
-  ngOnInit(): void {
-    this.getHeroes();
-  }
   ngonDestroy(): void {
     //  this.heroService.getHeroes().unsubscribe();
   }

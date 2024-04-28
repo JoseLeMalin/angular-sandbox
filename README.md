@@ -28,3 +28,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 pnpm install -D tailwindcss postcss autoprefixer
+
+
+## Angular Dependency Injection: Complete Guide: 
+        https://blog.angular-university.io/angular-dependency-injection/
+### Dependency injection in Angular
+        https://angular.dev/guide/di

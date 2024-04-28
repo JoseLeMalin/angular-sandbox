@@ -5,7 +5,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { HeroService } from '../hero.service';
 import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-hero-detail',
@@ -20,7 +19,6 @@ export class HeroDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroService,
-    private location: Location
   ) {}
   ngOnInit(): void {
     this.getHero();

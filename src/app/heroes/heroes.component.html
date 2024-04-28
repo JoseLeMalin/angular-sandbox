@@ -1,13 +1,25 @@
-<div class="flex-1 flex-col">
+<div class="flex flex-row flex-wrap justify-items-center content-evenly gap-4">
   <!-- <h2>{{ hero.name }}</h2> -->
   <p-card
+    *ngFor="let hero of heroesList"
     header="Hero {{ hero.name | uppercase }}"
-    subheader="Details"
-    [style]="{ width: '360px' }">
+    class="w-1/4 basis-1/4">
     <ng-template pTemplate="header">
       <img
         alt="Card"
         src="https://primefaces.org/cdn/primeng/images/usercard.png" />
+    </ng-template>
+    <ng-template pTemplate="title">
+      <div class="grid justify-items-center">
+        <button
+          pButton
+          class="bg-violet-500 text-gray-100 hover:bg-sky-400 hover:text-black shadow-lg rounded-md w-32 h-7 text-lg focus:ring-violet-300 light:from-neutral-300 light:focus:outline-none light:focus:ring dark:bg-purple-500 dark:text-white dark:hover:bg-sky-400 dark:hover:text-black"
+          [class.selected]="hero === selectedHero"
+          type="button"
+          (click)="onSelect(hero)">
+          Details
+        </button>
+      </div>
     </ng-template>
 
     <div><span>id: </span>{{ hero.id }}</div>
@@ -15,5 +27,9 @@
       <label for="name">Hero name: </label>
       <input id="name" [(ngModel)]="hero.name" placeholder="name" />
     </div>
+
+    <app-hero-detail
+      *ngIf="hero === selectedHero"
+      [hero]="selectedHero"></app-hero-detail>
   </p-card>
 </div>

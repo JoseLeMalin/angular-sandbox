@@ -29,6 +29,16 @@ import { CommonModule } from '@angular/common';
             Go to Heroes
           </button>
         </div>
+        <div class="heroes-btn-class flex-initial justify-center align-middle">
+          <button
+            pButton
+            class="bg-violet-500 text-gray-100 hover:bg-sky-400 hover:text-black shadow-lg rounded-md w-32 h-7 text-lg focus:ring-violet-300 
+             light:from-neutral-300 light:focus:outline-none light:focus:ring 
+             dark:bg-purple-500 dark:text-white dark:hover:bg-sky-400 dark:hover:text-black"
+            [routerLink]="['/messages']">
+            Go to Messages
+          </button>
+        </div>
       </header>
 
       <section class="flex flex-col container p-4 gap-4 h-max">

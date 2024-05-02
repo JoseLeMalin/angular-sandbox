@@ -13,7 +13,7 @@
       ],
       "rules": {
         "quotes": "off",
-
+        // https://github.com/prettier/eslint-plugin-prettier#options
         "prettier/prettier": ["error", { "parser": "angular", "singleQuote": false }],
         "@angular-eslint/directive-selector": [
           "error",

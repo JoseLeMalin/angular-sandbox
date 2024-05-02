@@ -11,9 +11,9 @@ import { FooterComponent } from "./footer/footer.component";
   standalone: true,
   template: `
     <app-header></app-header>
-    <main class="bg-gray-300 h-full">
-      <section class="flex flex-col container p-4 gap-4 h-max">
-        <div *ngIf="router.url !== '/'" class="py-4 flex-1 flex-column">
+    <main class="main-container container bg-gray-300 h-full">
+      <section class="flex flex-col container h-full gap-4 border-2">
+        <div *ngIf="router.url !== '/'" class="flex flex-column pb-2">
           <button
             pButton
             routerLink="/"
@@ -27,7 +27,7 @@ import { FooterComponent } from "./footer/footer.component";
             Back
           </button>
         </div>
-        <div class="h-full">
+        <div class="router-outlet-class flex border-2 h-full border-cyan-700">
           <router-outlet></router-outlet>
         </div>
       </section>

@@ -1,9 +1,9 @@
 import { CommonModule, NgIf, UpperCasePipe } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { Hero } from "../hero";
+import { Hero } from "../services/hero";
 import { Component, Input, OnInit } from "@angular/core";
 import { CardModule } from "primeng/card";
-import { HeroService } from "../hero.service";
+import { HeroService } from "../services/hero.service";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({

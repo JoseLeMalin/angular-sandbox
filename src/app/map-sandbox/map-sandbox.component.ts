@@ -1,6 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { AfterViewInit, Component, OnInit } from "@angular/core";
 import * as L from "leaflet";
+import { MarkerService } from "../services/marker.service";
+import { PopupService } from "../services/popup.service";
 
 @Component({
   selector: "app-map-sandbox",
@@ -10,13 +12,13 @@ import * as L from "leaflet";
   styleUrl: "./map-sandbox.component.css",
 })
 export class MapSandboxComponent implements OnInit, AfterViewInit {
-  map!: L.Map; //  = L.map("map").setView([51.505, -0.09], 13);
-  constructor() {
+  map!: L.Map;
+  constructor(private markerService: MarkerService) {
     // this.map = L.map("map").setView([51.505, -0.09], 13);
   }
   private initMap(): void {
     this.map = L.map("map", {
-      center: [39.8282, -98.5795],
+      center: [44.51730497097017, 3.502559682356291],
       zoom: 3,
     });
     const tiles = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -24,12 +26,12 @@ export class MapSandboxComponent implements OnInit, AfterViewInit {
       minZoom: 3,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     });
-
     tiles.addTo(this.map);
-    const marker = L.marker([51.5, -0.09]);
+    const marker = L.marker([44.51730497097017, 3.502559682356291]);
     marker.addTo(this.map);
     marker.bindPopup("<b>Hello world!</b><br>I am a popup.");
 
+    console.log("Reaching here 1 ?");
     const circle = L.circle([51.508, -0.11], {
       color: "red",
       fillColor: "#f03",
@@ -43,11 +45,10 @@ export class MapSandboxComponent implements OnInit, AfterViewInit {
       [51.51, -0.047],
     ]).addTo(this.map);
     polygon.bindPopup("I am a polygon.");
-    const popup = L.popup().setLatLng([48.8575, 2.3514]).setContent("Ici c'est Paris").openOn(this.map);
+    L.popup().setLatLng([48.8575, 2.3514]).setContent("Ici c'est Paris").openOn(this.map);
+    this.markerService.makeCapitalMarkers(this.map);
   }
-  ngOnInit(): void {
-    console.log("sdf");
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     this.initMap();

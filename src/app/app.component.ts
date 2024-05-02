@@ -11,8 +11,8 @@ import { FooterComponent } from "./footer/footer.component";
   standalone: true,
   template: `
     <app-header></app-header>
-    <main class="main-container container bg-gray-300 h-full">
-      <section class="flex flex-col container h-full gap-4 border-2">
+    <main class="main-container container bg-gray-300">
+      <section class="flex flex-col gap-4 border-2">
         <div *ngIf="router.url !== '/'" class="flex flex-column pb-2">
           <button
             pButton
@@ -27,7 +27,7 @@ import { FooterComponent } from "./footer/footer.component";
             Back
           </button>
         </div>
-        <div class="router-outlet-class flex border-2 h-full border-cyan-700">
+        <div class="router-outlet-class flex border-2 size-full border-cyan-700">
           <router-outlet></router-outlet>
         </div>
       </section>
@@ -39,7 +39,7 @@ import { FooterComponent } from "./footer/footer.component";
 })
 export class AppComponent {
   router = inject(Router);
-  title = "homes";
+  title = "Angular Sandbox";
   constructor(private location: Location) {}
 
   goBack() {

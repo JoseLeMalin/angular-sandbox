@@ -21,6 +21,8 @@ h1 {
   } */
   body, input[type="text"], button {
     color: #333;
+    height: max-content;
+    overflow: auto;
     font-family: Cambria, Georgia, serif;
   }
 /*   button {

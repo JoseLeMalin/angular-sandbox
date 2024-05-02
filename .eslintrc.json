@@ -12,6 +12,9 @@
         "plugin:prettier/recommended"
       ],
       "rules": {
+        "quotes": "off",
+
+        "prettier/prettier": ["error", { "parser": "angular", "singleQuote": false }],
         "@angular-eslint/directive-selector": [
           "error",
           {
@@ -32,22 +35,18 @@
     },
     {
       "files": ["*.html"],
-      "extends": [
-        "plugin:@angular-eslint/template/recommended",
-        "plugin:@angular-eslint/template/accessibility"
-      ],
-      "rules": {}
+      "extends": ["plugin:@angular-eslint/template/recommended", "plugin:@angular-eslint/template/accessibility"],
+      "rules": {
+        "quotes": "off"
+      }
     },
     {
       "files": ["*.html"],
       "excludedFiles": ["*inline-template-*.component.html"],
-      "extends": [
-        "plugin:@angular-eslint/template/recommended",
-        "plugin:prettier/recommended"
-      ],
+      "extends": ["plugin:@angular-eslint/template/recommended", "plugin:prettier/recommended"],
       "rules": {
         // NOTE: WE ARE OVERRIDING THE DEFAULT CONFIG TO ALWAYS SET THE PARSER TO ANGULAR (SEE BELOW)
-        "prettier/prettier": ["error", { "parser": "angular" }]
+        "prettier/prettier": ["warning", { "parser": "angular", "singleQuote": false }]
       }
     }
   ]

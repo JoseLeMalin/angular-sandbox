@@ -1,62 +1,17 @@
-import { Component, inject } from '@angular/core';
-import { HomeComponent } from './home/home.component';
-import { Router, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { Location } from '@angular/common';
+import { Component, inject } from "@angular/core";
+import { HomeComponent } from "./home/home.component";
+import { Router, RouterModule } from "@angular/router";
+import { CommonModule } from "@angular/common";
+import { Location } from "@angular/common";
+import { HeaderComponent } from "./header/header.component";
+import { FooterComponent } from "./footer/footer.component";
 
 @Component({
-  selector: 'app-root',
+  selector: "app-root",
   standalone: true,
-  imports: [CommonModule, HomeComponent, RouterModule],
   template: `
+    <app-header></app-header>
     <main class="bg-gray-300 h-full">
-      <header class="brand-name container flex flex-column mb-6 gap-6">
-        <nav class="flex flex-row gap-6">
-          <div class="logo-class flex-none">
-            <button [routerLink]="['/']">
-              <img
-                class="brand-logo"
-                src="/assets/logo.svg"
-                alt="logo"
-                aria-hidden="true" />
-            </button>
-          </div>
-          <div
-            class="heroes-btn-class flex-initial justify-center align-middle">
-            <button
-              pButton
-              class="bg-violet-500 text-gray-100 hover:bg-sky-400 hover:text-black shadow-lg rounded-md w-32 h-7 text-lg focus:ring-violet-300 
-             light:from-neutral-300 light:focus:outline-none light:focus:ring 
-             dark:bg-purple-500 dark:text-white dark:hover:bg-sky-400 dark:hover:text-black"
-              [routerLink]="['/heroes']">
-              Go to Heroes
-            </button>
-          </div>
-          <div
-            class="heroes-btn-class flex-initial justify-center align-middle">
-            <button
-              pButton
-              class="bg-violet-500 text-gray-100 hover:bg-sky-400 hover:text-black shadow-lg rounded-md w-32 h-7 text-lg focus:ring-violet-300 
-             light:from-neutral-300 light:focus:outline-none light:focus:ring 
-             dark:bg-purple-500 dark:text-white dark:hover:bg-sky-400 dark:hover:text-black"
-              [routerLink]="['/messages']">
-              Go to Messages
-            </button>
-          </div>
-          <div
-            class="heroes-btn-class flex-initial justify-center align-middle">
-            <button
-              pButton
-              class="bg-violet-500 text-gray-100 hover:bg-sky-400 hover:text-black shadow-lg rounded-md w-32 h-15 text-lg focus:ring-violet-300 
-             light:from-neutral-300 light:focus:outline-none light:focus:ring 
-             dark:bg-purple-500 dark:text-white dark:hover:bg-sky-400 dark:hover:text-black"
-              [routerLink]="['/dashboard']">
-              Go to Dashboard
-            </button>
-          </div>
-        </nav>
-      </header>
-
       <section class="flex flex-col container p-4 gap-4 h-max">
         <div *ngIf="router.url !== '/'" class="py-4 flex-1 flex-column">
           <button
@@ -76,35 +31,15 @@ import { Location } from '@angular/common';
           <router-outlet></router-outlet>
         </div>
       </section>
-      <footer
-        class="brand-name container bg-slate-400 flex flex-column mt-2 pt-2gap-6">
-        <div class="logo-class flex-none">
-          <button [routerLink]="['/']">
-            <img
-              class="brand-logo"
-              src="/assets/logo.svg"
-              alt="logo"
-              aria-hidden="true" />
-          </button>
-        </div>
-        <div class="heroes-btn-class flex-initial justify-center align-middle">
-          <button
-            pButton
-            class="bg-violet-500 text-gray-100 hover:bg-sky-400 hover:text-black shadow-lg rounded-md w-32 h-7 text-lg focus:ring-violet-300 
-             light:from-neutral-300 light:focus:outline-none light:focus:ring 
-             dark:bg-purple-500 dark:text-white dark:hover:bg-sky-400 dark:hover:text-black"
-            [routerLink]="['/heroes']">
-            Go to Heroes
-          </button>
-        </div>
-      </footer>
     </main>
+    <app-footer></app-footer>
   `,
-  styleUrl: './app.component.css',
+  styleUrl: "./app.component.css",
+  imports: [CommonModule, HomeComponent, RouterModule, HeaderComponent, FooterComponent],
 })
 export class AppComponent {
   router = inject(Router);
-  title = 'homes';
+  title = "homes";
   constructor(private location: Location) {}
 
   goBack() {

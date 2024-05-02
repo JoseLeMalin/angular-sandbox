@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { HeroDetailComponent } from "./hero-detail.component";
+import { MapSandboxComponent } from "./map-sandbox.component";
 
-describe("HeroDetailComponent", () => {
-  let component: HeroDetailComponent;
-  let fixture: ComponentFixture<HeroDetailComponent>;
+describe("MapSandboxComponent", () => {
+  let component: MapSandboxComponent;
+  let fixture: ComponentFixture<MapSandboxComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HeroDetailComponent],
+      imports: [MapSandboxComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(HeroDetailComponent);
+    fixture = TestBed.createComponent(MapSandboxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

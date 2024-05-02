@@ -1,13 +1,8 @@
 <div class="flex flex-row flex-wrap justify-items-center content-evenly gap-4">
   <!-- <h2>{{ hero.name }}</h2> -->
-  <p-card
-    *ngFor="let hero of heroesList"
-    header="Hero {{ hero.name | uppercase }}"
-    class="w-1/4 basis-1/4">
+  <p-card *ngFor="let hero of heroesList" header="Hero {{ hero.name | uppercase }}" class="w-1/4 basis-1/4">
     <ng-template pTemplate="header">
-      <img
-        alt="Card"
-        src="https://primefaces.org/cdn/primeng/images/usercard.png" />
+      <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
     </ng-template>
     <ng-template pTemplate="title">
       <div class="grid justify-items-center">

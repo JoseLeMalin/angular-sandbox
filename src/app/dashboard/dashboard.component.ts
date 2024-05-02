@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { Hero } from '../hero';
-import { HeroService } from '../hero.service';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { Hero } from "../hero";
+import { HeroService } from "../hero.service";
+import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
 
 @Component({
-  selector: 'app-dashboard',
+  selector: "app-dashboard",
   standalone: true,
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
+  templateUrl: "./dashboard.component.html",
+  styleUrls: ["./dashboard.component.css"],
   imports: [CommonModule, RouterModule],
 })
 export class DashboardComponent implements OnInit {
@@ -21,8 +21,6 @@ export class DashboardComponent implements OnInit {
   }
 
   getHeroes(): void {
-    this.heroService
-      .getHeroes()
-      .subscribe(heroes => (this.heroes = heroes.slice(1, 5)));
+    this.heroService.getHeroes().subscribe(heroes => (this.heroes = heroes.slice(1, 5)));
   }
 }

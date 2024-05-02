@@ -1,9 +1,6 @@
 <h2>Top Heroes</h2>
 <div class="heroes-menu">
-  <button
-    *ngFor="let hero of heroes"
-    pButton
-    [routerLink]="['/detail/{{ hero.id }}']">
+  <button *ngFor="let hero of heroes" pButton [routerLink]="['/detail/{{ hero.id }}']">
     {{ hero.name }}
   </button>
 </div>

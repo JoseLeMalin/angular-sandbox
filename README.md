@@ -34,3 +34,9 @@ pnpm install -D tailwindcss postcss autoprefixer
         https://blog.angular-university.io/angular-dependency-injection/
 ### Dependency injection in Angular
         https://angular.dev/guide/di
+
+## Rxjs:
+### Rxjs operators explained
+        https://www.youtube.com/watch?v=Byttv3YpjQk&t
+### Rxjs Marbles: 
+        https://rxmarbles.com/

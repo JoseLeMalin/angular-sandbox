@@ -40,6 +40,6 @@ export class HeroesComponent implements OnInit {
   }
 
   ngonDestroy(): void {
-    //  this.heroService.getHeroes().unsubscribe();
+    // this.heroService.getHeroes().unsubscribe();
   }
 }

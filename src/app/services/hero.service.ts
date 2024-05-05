@@ -22,7 +22,7 @@ export class HeroService {
 
   /** GET heroes from the server */
   getHeroes(): Observable<Hero[]> {
-    return this.http.get<Hero[]>(this.heroesUrl).pipe(
+    return this.http.get<Hero[]>(this.heroesUrl, this.httpOptions).pipe(
       tap(item => this.log("fetched heroes" + item)),
       catchError(this.handleError<Hero[]>("getHeroes", []))
     );
@@ -31,7 +31,7 @@ export class HeroService {
   /** GET hero by id. Return `undefined` when id not found */
   getHeroNo404(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/?id=${id}`;
-    return this.http.get<Hero[]>(url).pipe(
+    return this.http.get<Hero[]>(url, this.httpOptions).pipe(
       map(heroes => heroes[0]), // returns a {0|1} element array
       tap(h => {
         const outcome = h ? "fetched" : "did not find";
@@ -50,6 +50,8 @@ export class HeroService {
     );
   }
 
+  // Best practice Angular Rxjs
+  // https://www.youtube.com/watch?v=2T3F5TfrYwI
   /* GET heroes whose name contains search term */
   searchHeroes(term: string): Observable<Hero[]> {
     if (!term.trim()) {

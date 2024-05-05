@@ -16,15 +16,16 @@ export class UserService {
   ) {}
 
   getUsers(): Observable<any> {
-    return this.http.get(`http://localhost:3000/users/`, this.httpOptions).pipe(
+    return this.http.get(`http://localhost:3000/users`, this.httpOptions).pipe(
       tap(item => console.log(`getUsers Api users: ${item}`)),
+      
       catchError(this.handleError("searchHeroes", []))
     );
   }
   getUser(id: number): Observable<any> {
     return this.http.get(`http://localhost:3000/users/${id}`, this.httpOptions).pipe(
       tap(item => console.log(`fetched hero id=${id} ${item}`)),
-      catchError(this.handleError("searchHeroes", []))
+      // catchError(this.handleError("searchHeroes", []))
     );
   }
   private handleError<T>(operation = "operation", result?: T) {

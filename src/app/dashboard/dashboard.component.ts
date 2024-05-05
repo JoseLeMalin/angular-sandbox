@@ -4,6 +4,7 @@ import { HeroService } from "../services/hero.service";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { UserService } from "../services/user.service";
+import { Subject } from "rxjs";
 
 @Component({
   selector: "app-dashboard",
@@ -14,12 +15,14 @@ import { UserService } from "../services/user.service";
 })
 export class DashboardComponent implements OnInit {
   heroes: Hero[] = [];
-
+  private click$ = new Subject<void>();
   constructor(private userService: UserService) {}
 
   callBackendAPI() {
-    const resultApi = this.userService.getUsers();
+    console.log("Coming here ?: ",);
+    const resultApi = this.userService.getUsers().subscribe();
     console.log("resultApi: ", resultApi);
+    resultApi.unsubscribe()
     
   }
   ngOnInit(): void {

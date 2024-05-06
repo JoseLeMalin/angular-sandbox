@@ -40,3 +40,5 @@ pnpm install -D tailwindcss postcss autoprefixer
         https://www.youtube.com/watch?v=Byttv3YpjQk&t
 ### Rxjs Marbles: 
         https://rxmarbles.com/
+### Rxjs & Zod: 
+        https://www.youtube.com/watch?v=wfweGm5RTZw

@@ -1,15 +1,18 @@
-<h2>Top Heroes</h2>
-<div class="heroes-menu">
-  <button *ngFor="let hero of heroes" pButton [routerLink]="['/detail/{{ hero.id }}']">
-    {{ hero.name }}
-  </button>
-  <button
-    pButton
-    type="button"
-    
-    class="bg-violet-500 text-gray-100 hover:bg-sky-400 hover:text-black shadow-lg rounded-md text-lg focus:ring-violet-300 light:from-neutral-300 light:focus:outline-none light:focus:ring dark:bg-purple-500 dark:text-white dark:hover:bg-sky-400 dark:hover:text-black"
-    (click)="callBackendAPI()"
-    >
-    Call backend API
-  </button>
+<h2>Users</h2>
+<button
+  pButton
+  type="button"
+  class="bg-violet-500 text-gray-100 hover:bg-sky-400 hover:text-black shadow-lg rounded-md text-lg focus:ring-violet-300 light:from-neutral-300 light:focus:outline-none light:focus:ring dark:bg-purple-500 dark:text-white dark:hover:bg-sky-400 dark:hover:text-black"
+  (click)="callBackendAPI()">
+  Call backend API
+</button>
+<div *ngIf="users?.length" class="flex flex-col gap-4">
+  <div *ngFor="let user of users" class="flex flex-row gap-4">
+    <label for="id">User ID: </label>
+    <input id="id" [(ngModel)]="user.id" placeholder="ID" />
+    <label for="name">User name: </label>
+    <input id="name" [(ngModel)]="user.name" placeholder="name" />
+    <label for="email">User email: </label>
+    <input id="email" [(ngModel)]="user.email" placeholder="email" />
+  </div>
 </div>

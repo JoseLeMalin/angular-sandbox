@@ -1,35 +1,46 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit, Type } from "@angular/core";
 import { Hero } from "../services/hero";
-import { HeroService } from "../services/hero.service";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { UserService } from "../services/user.service";
-import { Subject } from "rxjs";
+import { map, Observable, of, Subject } from "rxjs";
+import { FormsModule } from "@angular/forms";
+
+export type User = {
+  id: string;
+  name: string;
+  email: string;
+  // password: string;
+};
 
 @Component({
   selector: "app-dashboard",
   standalone: true,
   templateUrl: "./dashboard.component.html",
   styleUrls: ["./dashboard.component.css"],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule],
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
   heroes: Hero[] = [];
-  private click$ = new Subject<void>();
+  users!: User[] | undefined;
+
   constructor(private userService: UserService) {}
 
   callBackendAPI() {
-    console.log("Coming here ?: ",);
-    const resultApi = this.userService.getUsers().subscribe();
-    console.log("resultApi: ", resultApi);
-    resultApi.unsubscribe()
-    
+    this.userService.getUsers().subscribe(response => (this.users = response));
   }
   ngOnInit(): void {
     // this.getHeroes();
+    this.userService.getUsers().subscribe(
+      {
+        next: value => this.users = value,
+        error: err => console.error("Observable emitted an error: " + err),
+        complete: () => console.log("Observable emitted the complete notification"),
+      }
+      //responseUsers => (this.users$ = responseUsers)
+    );
   }
-
-  // getHeroes(): void {
-  //   this.heroService.getHeroes().subscribe(heroes => (this.heroes = heroes.slice(1, 5)));
-  // }
+  ngOnDestroy(): void {
+    this.users;
+  }
 }

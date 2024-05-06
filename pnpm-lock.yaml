@@ -38,6 +38,9 @@ importers:
       '@ngrx/store':
         specifier: ^17.2.0
         version: 17.2.0(@angular/core@17.3.6(rxjs@7.8.1)(zone.js@0.14.4))(rxjs@7.8.1)
+      '@ngrx/store-devtools':
+        specifier: ^17.2.0
+        version: 17.2.0(@ngrx/store@17.2.0(@angular/core@17.3.6(rxjs@7.8.1)(zone.js@0.14.4))(rxjs@7.8.1))(rxjs@7.8.1)
       angular-in-memory-web-api:
         specifier: ^0.17.0
         version: 0.17.0(@angular/common@17.3.6(@angular/core@17.3.6(rxjs@7.8.1)(zone.js@0.14.4))(rxjs@7.8.1))(@angular/core@17.3.6(rxjs@7.8.1)(zone.js@0.14.4))(rxjs@7.8.1)
@@ -1304,6 +1307,12 @@ packages:
     peerDependencies:
       eslint: '>=8.0.0'
       typescript: '*'
+
+  '@ngrx/store-devtools@17.2.0':
+    resolution: {integrity: sha512-ig0qr6hMexZGnrlxfHvZmu5CanRjH7hhx60XUbB5BdBvWJIIRaWKPLcsniiDUhljAD87gvzrrilbCTiML38+CA==}
+    peerDependencies:
+      '@ngrx/store': 17.2.0
+      rxjs: ^6.5.3 || ^7.5.0
 
   '@ngrx/store@17.2.0':
     resolution: {integrity: sha512-7wKgZ59B/6yQSvvsU0DQXipDqpkAXv7LwcXLD5Ww7nvqN0fQoRPThMh4+Wv55DCJhE0bQc1NEMciLA47uRt7Wg==}
@@ -6191,6 +6200,12 @@ snapshots:
       typescript: 5.4.5
     transitivePeerDependencies:
       - supports-color
+
+  '@ngrx/store-devtools@17.2.0(@ngrx/store@17.2.0(@angular/core@17.3.6(rxjs@7.8.1)(zone.js@0.14.4))(rxjs@7.8.1))(rxjs@7.8.1)':
+    dependencies:
+      '@ngrx/store': 17.2.0(@angular/core@17.3.6(rxjs@7.8.1)(zone.js@0.14.4))(rxjs@7.8.1)
+      rxjs: 7.8.1
+      tslib: 2.6.2
 
   '@ngrx/store@17.2.0(@angular/core@17.3.6(rxjs@7.8.1)(zone.js@0.14.4))(rxjs@7.8.1)':
     dependencies:

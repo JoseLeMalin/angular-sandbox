@@ -1,9 +1,14 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, inject, OnDestroy, OnInit } from "@angular/core";
 import { Hero } from "../services/hero";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { UserService } from "../services/user.service";
 import { FormsModule } from "@angular/forms";
+import { DividerModule } from "primeng/divider";
+import { Store, StoreModule } from "@ngrx/store";
+import { createUser, getUsers } from "../store/actions/users.actions";
+import { Observable } from "rxjs";
+import { selectUsers } from "../store/selectors/users.selectors";
 
 export type User = {
   id: string;
@@ -17,25 +22,40 @@ export type User = {
   standalone: true,
   templateUrl: "./dashboard.component.html",
   styleUrls: ["./dashboard.component.css"],
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, DividerModule, StoreModule],
 })
 export class DashboardComponent implements OnInit, OnDestroy {
+  private store = inject(Store);
   heroes: Hero[] = [];
   users!: User[];
+  usersBis$!: Observable<User[]>;
   user!: User;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) {
+    this.usersBis$ = this.store.select(selectUsers);
+  }
 
   callBackendAPI() {
-    this.userService.getUsers().subscribe(response => (this.users = response));
+    // this.userService.getUsers().subscribe(response => (this.users = response));
+
+    this.store.dispatch(getUsers());
   }
   getSingleUser() {
-    this.userService.getUser("9aa28082-cb3c-439d-b209-b88301a5db16").subscribe(response => (this.user = response));
+    this.userService.getUsers();
+    // this.userService.getUser("9aa28082-cb3c-439d-b209-b88301a5db16").subscribe(response => (this.user = response));
+    // store.dispatch(login({ username: username, password: password }));
+  }
+  createUser() {
+    this.store.dispatch(createUser({ userId: " v4()", name: "createdUser", email: "createdstring@string" }));
+    // this.userService.getUser("9aa28082-cb3c-439d-b209-b88301a5db16").subscribe(response => (this.user = response));
+    // store.dispatch(login({ username: username, password: password }));
   }
 
   ngOnInit(): void {
     console.log("Init Dashboard");
-
+    // this.store.dispatch(getUsers());
+    this.store.dispatch(createUser({ userId: " v4()", name: "string", email: "string@string" }));
+    // this.users = selectUsers(initialState);
     // this.getHeroes();
     // this.userService.getUsers().subscribe(
     //   {

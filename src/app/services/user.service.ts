@@ -30,7 +30,7 @@ export class UserService {
   };
   constructor(
     private http: HttpClient,
-    private messageService: MessageService
+    private messageService: MessageService,
   ) {}
 
   getUsers() {
@@ -51,6 +51,9 @@ export class UserService {
       catchError(this.handleError("searchHeroes", []))
     );
   }
+  /* getUsersBis() {
+    this.store.dispatch(getUsers())
+  } */
   getUser(id: string): Observable<User> {
     return this.http.get(`http://localhost:3000/users/${id}`, this.httpOptions).pipe(
       tap(item => console.log(`fetched hero id=${id} ${item}`)),

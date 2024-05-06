@@ -1,8 +1,7 @@
 import { CommonModule } from "@angular/common";
-import { AfterViewInit, Component, OnInit } from "@angular/core";
+import { AfterViewInit, Component } from "@angular/core";
 import * as L from "leaflet";
 import { MarkerService } from "../services/marker.service";
-import { PopupService } from "../services/popup.service";
 
 @Component({
   selector: "app-map-sandbox",
@@ -11,7 +10,7 @@ import { PopupService } from "../services/popup.service";
   templateUrl: "./map-sandbox.component.html",
   styleUrl: "./map-sandbox.component.css",
 })
-export class MapSandboxComponent implements OnInit, AfterViewInit {
+export class MapSandboxComponent implements AfterViewInit {
   map!: L.Map;
   constructor(private markerService: MarkerService) {
     // this.map = L.map("map").setView([51.505, -0.09], 13);
@@ -48,7 +47,6 @@ export class MapSandboxComponent implements OnInit, AfterViewInit {
     L.popup().setLatLng([48.8575, 2.3514]).setContent("Ici c'est Paris").openOn(this.map);
     this.markerService.makeCapitalMarkers(this.map);
   }
-  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     this.initMap();

@@ -1,18 +1,23 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { catchError, map, Observable, of, tap, throwError } from "rxjs";
+import { catchError, map, Observable, of, tap } from "rxjs";
 import { MessageService } from "./message.service";
-import { User } from "../dashboard/dashboard.component";
 import { z } from "zod";
+import { User } from "../dashboard/dashboard.component";
 
-const SchemaUser = z.array(
+const SchemaUser = z.object({
+  id: z.string(),
+  name: z.string(),
+  email: z.string(),
+});
+const SchemaUsers = z.array(
   z.object({
     id: z.string(),
     name: z.string(),
     email: z.string(),
   })
 );
-type UserInfered = z.infer<typeof SchemaUser>;
+// type UserInfered = z.infer<typeof SchemaUser>;
 
 @Injectable({
   providedIn: "root",
@@ -31,13 +36,12 @@ export class UserService {
   getUsers() {
     return this.http.get(`http://localhost:3000/users`, this.httpOptions).pipe(
       tap(item => console.log(`getUsers Api users: ${item}`)),
-      map(responseUsers => SchemaUser.safeParse(responseUsers)),
+      map(responseUsers => SchemaUsers.safeParse(responseUsers)),
       map(responseParsed => {
         console.log("responseParsed: ", responseParsed);
-        
+
         if (!responseParsed?.success) {
           throw new Error(responseParsed.error.message);
-          
         }
         if (!responseParsed?.data) {
           return [];
@@ -47,9 +51,11 @@ export class UserService {
       catchError(this.handleError("searchHeroes", []))
     );
   }
-  getUser(id: number): Observable<any> {
+  getUser(id: string): Observable<User> {
     return this.http.get(`http://localhost:3000/users/${id}`, this.httpOptions).pipe(
-      tap(item => console.log(`fetched hero id=${id} ${item}`))
+      tap(item => console.log(`fetched hero id=${id} ${item}`)),
+      map(response => SchemaUser.parse(response)),
+      map(resParsed => resParsed)
       // catchError(this.handleError("searchHeroes", []))
     );
   }

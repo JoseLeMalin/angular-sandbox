@@ -2,21 +2,21 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import * as L from "leaflet";
 import { PopupService } from "./popup.service";
-import z, { number } from "zod";
-import { catchError, of, tap, map as rxjsMap } from "rxjs";
+import z from "zod";
+import { catchError, of, map as rxjsMap } from "rxjs";
 
-type GeoJsonCapitals = {
-  type: string;
-  geometry: {
-    type: string;
-    coordinates: number[];
-  };
-  properties: {
-    state: string;
-    name: string;
-    population: number;
-  };
-};
+// type GeoJsonCapitals = {
+//   type: string;
+//   geometry: {
+//     type: string;
+//     coordinates: number[];
+//   };
+//   properties: {
+//     state: string;
+//     name: string;
+//     population: number;
+//   };
+// };
 
 const SchemaGeoJson = z.object({
   type: z.string(),

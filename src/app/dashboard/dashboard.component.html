@@ -45,5 +45,14 @@
     (click)="createUser()">
     Create user
   </button>
-  
+  <div *ngIf="usersBis$ | async" class="flex flex-row gap-4">
+    <div *ngFor="let user of usersBis$ | async" class="flex flex-row gap-4">
+      <label for="id">User ID: </label>
+      <input id="id" [(ngModel)]="user.id" placeholder="ID" />
+      <label for="name">User name: </label>
+      <input id="name" [(ngModel)]="user.name" placeholder="name" />
+      <label for="email">User email: </label>
+      <input id="email" [(ngModel)]="user.email" placeholder="email" />
+    </div>
+  </div>
 </div>

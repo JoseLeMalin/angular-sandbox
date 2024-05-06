@@ -25,19 +25,10 @@ export const usersReducer = createReducer(
       users: [...state.users, { id: "123", name: "Sebastien", email: "seb@seb" }],
     })
   ),
-  //on(
-  //  getUsers,
-  //  (state): AppState => ({
-  //    ...state,
-  //    isLoading: true,
-  //    // users: [{ id: "123", name: "Sebastien", email: "seb@seb" }],
-  //  })
-  //),
   on(
     createUser,
     (state, action): AppState => ({
       ...state,
-      isLoading: true,
       users: [...state.users, { id: action.userId, name: action.name, email: action.email }],
     })
   ),

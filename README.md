@@ -36,6 +36,8 @@ pnpm install -D tailwindcss postcss autoprefixer
         https://angular.dev/guide/di
 
 ## Rxjs:
+### Learn RxJS Angular, RxJS pipe, async pipe, RxJS observables, Behaviorsubject, Combinelatest
+        https://www.youtube.com/watch?v=2T3F5TfrYwI
 ### Rxjs operators explained
         https://www.youtube.com/watch?v=Byttv3YpjQk&t
 ### Rxjs Marbles: 

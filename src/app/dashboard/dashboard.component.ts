@@ -7,7 +7,6 @@ import { FormsModule } from "@angular/forms";
 import { DividerModule } from "primeng/divider";
 import { Store, StoreModule } from "@ngrx/store";
 import { createUser, getUsers } from "../store/actions/users.actions";
-import { Observable } from "rxjs";
 import { selectUsers } from "../store/selectors/users.selectors";
 
 export type User = {
@@ -28,11 +27,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private store = inject(Store);
   heroes: Hero[] = [];
   users!: User[];
-  usersBis$!: Observable<User[]>;
+  usersBis$ = this.store.select<User[]>(selectUsers);
   user!: User;
 
   constructor(private userService: UserService) {
-    this.usersBis$ = this.store.select(selectUsers);
+    // this.store.select(selectUsers).pipe(
+    //   map(users => users),
+    //   filter(val => val !== undefined)
+    // );
+    //.subscribe(users => (this.usersBis = users));
   }
 
   callBackendAPI() {
@@ -53,8 +56,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     console.log("Init Dashboard");
+    console.log("this.userBis$", this.usersBis$);
     // this.store.dispatch(getUsers());
-    this.store.dispatch(createUser({ userId: " v4()", name: "string", email: "string@string" }));
+    // this.store.dispatch(createUser({ userId: " v4()", name: "string", email: "string@string" }));
+    // this.store
+    //   .select(selectUsers)
+    //   .pipe(map(users => users))
+    //   .subscribe(item => (this.usersBis = item));
     // this.users = selectUsers(initialState);
     // this.getHeroes();
     // this.userService.getUsers().subscribe(

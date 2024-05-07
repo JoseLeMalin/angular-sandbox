@@ -44,3 +44,7 @@ pnpm install -D tailwindcss postcss autoprefixer
         https://rxmarbles.com/
 ### Rxjs & Zod: 
         https://www.youtube.com/watch?v=wfweGm5RTZw
+
+## Angular Signals
+        Great video 10/10: Understand Angular Signals in 20 Minutes
+        https://www.youtube.com/watch?v=0jdyzCHzPxo

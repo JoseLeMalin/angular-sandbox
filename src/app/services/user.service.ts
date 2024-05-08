@@ -4,19 +4,18 @@ import { catchError, map, Observable, of, tap } from "rxjs";
 import { MessageService } from "./message.service";
 import { z } from "zod";
 import { User } from "../dashboard/dashboard.component";
+import { Role } from "../store/reducers/users.reducers";
 
 const SchemaUser = z.object({
   id: z.string(),
   name: z.string(),
   email: z.string(),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+  password: z.string(),
+  role: z.nativeEnum(Role),
 });
-const SchemaUsers = z.array(
-  z.object({
-    id: z.string(),
-    name: z.string(),
-    email: z.string(),
-  })
-);
+const SchemaUsers = z.array(SchemaUser);
 // type UserInfered = z.infer<typeof SchemaUser>;
 
 @Injectable({
@@ -30,7 +29,7 @@ export class UserService {
   };
   constructor(
     private http: HttpClient,
-    private messageService: MessageService,
+    private messageService: MessageService
   ) {}
 
   getUsers() {
@@ -38,7 +37,7 @@ export class UserService {
       tap(item => console.log(`getUsers Api users: ${item}`)),
       map(responseUsers => SchemaUsers.safeParse(responseUsers)),
       map(responseParsed => {
-        console.log("responseParsed: ", responseParsed);
+        console.log("responseParsed getUsers: ", responseParsed);
 
         if (!responseParsed?.success) {
           throw new Error(responseParsed.error.message);

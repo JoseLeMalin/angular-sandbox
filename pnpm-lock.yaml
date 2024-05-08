@@ -35,6 +35,9 @@ importers:
       '@angular/router':
         specifier: ^17.3.0
         version: 17.3.6(@angular/common@17.3.6(@angular/core@17.3.6(rxjs@7.8.1)(zone.js@0.14.4))(rxjs@7.8.1))(@angular/core@17.3.6(rxjs@7.8.1)(zone.js@0.14.4))(@angular/platform-browser@17.3.6(@angular/animations@17.3.6(@angular/core@17.3.6(rxjs@7.8.1)(zone.js@0.14.4)))(@angular/common@17.3.6(@angular/core@17.3.6(rxjs@7.8.1)(zone.js@0.14.4))(rxjs@7.8.1))(@angular/core@17.3.6(rxjs@7.8.1)(zone.js@0.14.4)))(rxjs@7.8.1)
+      '@ngrx/effects':
+        specifier: ^17.2.0
+        version: 17.2.0(@angular/core@17.3.6(rxjs@7.8.1)(zone.js@0.14.4))(@ngrx/store@17.2.0(@angular/core@17.3.6(rxjs@7.8.1)(zone.js@0.14.4))(rxjs@7.8.1))(rxjs@7.8.1)
       '@ngrx/store':
         specifier: ^17.2.0
         version: 17.2.0(@angular/core@17.3.6(rxjs@7.8.1)(zone.js@0.14.4))(rxjs@7.8.1)
@@ -44,6 +47,9 @@ importers:
       angular-in-memory-web-api:
         specifier: ^0.17.0
         version: 0.17.0(@angular/common@17.3.6(@angular/core@17.3.6(rxjs@7.8.1)(zone.js@0.14.4))(rxjs@7.8.1))(@angular/core@17.3.6(rxjs@7.8.1)(zone.js@0.14.4))(rxjs@7.8.1)
+      dayjs:
+        specifier: ^1.11.11
+        version: 1.11.11
       leaflet:
         specifier: ^1.9.4
         version: 1.9.4
@@ -1302,11 +1308,23 @@ packages:
     resolution: {integrity: sha512-/gKJun8NNiWGZJkGzI/Ragc53cOdcLNdzjLaIa+GEjguQs0ulsurx8WN0jijdK9yPqDvziX995sMRLyLt1uZMQ==}
     engines: {node: '>= 0.4'}
 
+  '@ngrx/effects@17.2.0':
+    resolution: {integrity: sha512-tXDJNsuBtbvI/7+vYnkDKKpUvLbopw1U5G6LoPnKNrbTPsPcUGmCqF5Su/ZoRN3BhXjt2j+eoeVdpBkxdxMRgg==}
+    peerDependencies:
+      '@angular/core': ^17.0.0
+      '@ngrx/store': 17.2.0
+      rxjs: ^6.5.3 || ^7.5.0
+
   '@ngrx/eslint-plugin@17.2.0':
     resolution: {integrity: sha512-fkbv98Pch92R0AYj5pzU9YWicn5JZWVex3BqSdfV1xsuTk53QDhZZ0yIDSqjvjubv4J6GGxm5dnpEjceE4Wx/g==}
     peerDependencies:
       eslint: '>=8.0.0'
       typescript: '*'
+
+  '@ngrx/operators@17.0.0-beta.0':
+    resolution: {integrity: sha512-EbO8AONuQ6zo2v/mPyBOi4y0CTAp1x4Z+bx7ZF+Pd8BL5ma53BTCL1TmzaeK5zPUe0yApudLk9/ZbHXPnVox5A==}
+    peerDependencies:
+      rxjs: ^6.5.3 || ^7.4.0
 
   '@ngrx/store-devtools@17.2.0':
     resolution: {integrity: sha512-ig0qr6hMexZGnrlxfHvZmu5CanRjH7hhx60XUbB5BdBvWJIIRaWKPLcsniiDUhljAD87gvzrrilbCTiML38+CA==}
@@ -2351,6 +2369,9 @@ packages:
   date-format@4.0.14:
     resolution: {integrity: sha512-39BOQLs9ZjKh0/patS9nrT8wc3ioX3/eA/zgbKNopnF2wCqJEoxywwwElATYvRsXdnOxA/OQeQoFZ3rFjVajhg==}
     engines: {node: '>=4.0'}
+
+  dayjs@1.11.11:
+    resolution: {integrity: sha512-okzr3f11N6WuqYtZSvm+F776mB41wRZMhKP+hc34YdW+KmtYYK9iqvHSwo2k9FEH3fhGXvOPV6yz2IcSrfRUDg==}
 
   debug@2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
@@ -6190,6 +6211,14 @@ snapshots:
     dependencies:
       call-bind: 1.0.7
 
+  '@ngrx/effects@17.2.0(@angular/core@17.3.6(rxjs@7.8.1)(zone.js@0.14.4))(@ngrx/store@17.2.0(@angular/core@17.3.6(rxjs@7.8.1)(zone.js@0.14.4))(rxjs@7.8.1))(rxjs@7.8.1)':
+    dependencies:
+      '@angular/core': 17.3.6(rxjs@7.8.1)(zone.js@0.14.4)
+      '@ngrx/operators': 17.0.0-beta.0(rxjs@7.8.1)
+      '@ngrx/store': 17.2.0(@angular/core@17.3.6(rxjs@7.8.1)(zone.js@0.14.4))(rxjs@7.8.1)
+      rxjs: 7.8.1
+      tslib: 2.6.2
+
   '@ngrx/eslint-plugin@17.2.0(eslint@8.57.0)(typescript@5.4.5)':
     dependencies:
       '@typescript-eslint/experimental-utils': 5.62.0(eslint@8.57.0)(typescript@5.4.5)
@@ -6200,6 +6229,11 @@ snapshots:
       typescript: 5.4.5
     transitivePeerDependencies:
       - supports-color
+
+  '@ngrx/operators@17.0.0-beta.0(rxjs@7.8.1)':
+    dependencies:
+      rxjs: 7.8.1
+      tslib: 2.6.2
 
   '@ngrx/store-devtools@17.2.0(@ngrx/store@17.2.0(@angular/core@17.3.6(rxjs@7.8.1)(zone.js@0.14.4))(rxjs@7.8.1))(rxjs@7.8.1)':
     dependencies:
@@ -7361,6 +7395,8 @@ snapshots:
   custom-event@1.0.1: {}
 
   date-format@4.0.14: {}
+
+  dayjs@1.11.11: {}
 
   debug@2.6.9:
     dependencies:

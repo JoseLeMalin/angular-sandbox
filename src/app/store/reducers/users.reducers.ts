@@ -1,6 +1,15 @@
 import { createReducer, on } from "@ngrx/store";
-import { createUser, deleteUser, getUsers, updateUser } from "../actions/users.actions";
+import {
+  createUser,
+  deleteUser,
+  getUsers,
+  getUsersFailure,
+  getUsersSuccess,
+  updateUser,
+} from "../actions/users.actions";
 import { User } from "../../dashboard/dashboard.component";
+import dayjs from "dayjs";
+import { UserStateInterface } from "../../types/users.types";
 
 export interface AppState {
   isLoading: boolean;
@@ -8,9 +17,27 @@ export interface AppState {
   error: null;
 }
 
-export const initialState: AppState = {
+export enum Role {
+  ADMIN = "admin",
+  EDITOR = "editor",
+  READER = "reader",
+  GHOST = "ghost",
+}
+
+// export const initialState: AppState = {
+export const initialState: UserStateInterface = {
   isLoading: false,
-  users: [{ id: "000", name: "Sebastien", email: "seb@seb" }],
+  users: [
+    // {
+    //   id: "000",
+    //   name: "Sebastien",
+    //   email: "seb@seb",
+    //   createdAt: dayjs().toDate(),
+    //   updatedAt: dayjs().toDate(),
+    //   password: "",
+    //   role: Role.READER,
+    // },
+  ],
   error: null,
 };
 
@@ -19,22 +46,97 @@ export const usersReducer = createReducer(
   // on(getUser, (state, action) => ({ ...state, id: action.userId, name: action.name, email: action.email })),
   on(
     getUsers,
-    (state): AppState => ({
+    (state): UserStateInterface => ({
       ...state,
       isLoading: true,
-      users: [...state.users, { id: "123", name: "Sebastien", email: "seb@seb" }],
+      users: [
+        ...state.users,
+        {
+          id: "000",
+          name: "Sebastien",
+          email: "seb@seb",
+          createdAt: dayjs().toDate(),
+          updatedAt: dayjs().toDate(),
+          password: "",
+          role: Role.ADMIN,
+        },
+      ],
+    })
+  ),
+  on(
+    getUsersSuccess,
+    (state, action): UserStateInterface => ({
+      ...state,
+      isLoading: true,
+      users: [
+        ...state.users,
+        ...action.users,
+        // {
+        //   id: "000",
+        //   name: "Sebastien",
+        //   email: "seb@seb",
+        //   createdAt: dayjs().toDate(),
+        //   updatedAt: dayjs().toDate(),
+        //   password: "danslegetusersSuccess1",
+        //   role: Role.ADMIN,
+        // },
+        // {
+        //   id: "000",
+        //   name: "Sebastien",
+        //   email: "seb@seb",
+        //   createdAt: dayjs().toDate(),
+        //   updatedAt: dayjs().toDate(),
+        //   password: "danslegetusersSuccess2",
+        //   role: Role.ADMIN,
+        // },
+      ],
+    })
+  ),
+  on(
+    getUsersFailure,
+    (state, action): UserStateInterface => ({
+      ...state,
+      isLoading: false,
+      error: action.error,
     })
   ),
   on(
     createUser,
-    (state, action): AppState => ({
+    (state, action): UserStateInterface => ({
       ...state,
-      users: [...state.users, { id: action.userId, name: action.name, email: action.email }],
+      users: [
+        ...state.users,
+        {
+          id: action.userId,
+          name: action.name,
+          email: action.email,
+          createdAt: dayjs().toDate(),
+          updatedAt: dayjs().toDate(),
+          password: "the_password",
+          role: Role.EDITOR,
+        },
+      ],
     })
   ),
   on(
     updateUser,
-    (state, action): AppState => ({ ...state, users: state.users.map(user => (user.id === action.id ? action : user)) })
+    (state, action): UserStateInterface => ({
+      ...state,
+      users: state.users.map(user =>
+        user.id === action.id
+          ? {
+              ...action,
+              createdAt: dayjs().toDate(),
+              updatedAt: dayjs().toDate(),
+              password: "the_password-updated",
+              role: Role.EDITOR,
+            }
+          : user
+      ),
+    })
   ),
-  on(deleteUser, (state, { userId }): AppState => ({ ...state, users: state.users.filter(user => user.id !== userId) }))
+  on(
+    deleteUser,
+    (state, { userId }): UserStateInterface => ({ ...state, users: state.users.filter(user => user.id !== userId) })
+  )
 );

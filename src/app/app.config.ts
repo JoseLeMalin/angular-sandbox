@@ -6,6 +6,7 @@ import { provideHttpClient } from "@angular/common/http";
 import { provideState, provideStore } from "@ngrx/store";
 import { provideStoreDevtools } from "@ngrx/store-devtools";
 import { usersReducer } from "./store/reducers/users.reducers";
+import { provideEffects } from '@ngrx/effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,5 +16,6 @@ export const appConfig: ApplicationConfig = {
     provideStore(),
     provideState({ name: "users", reducer: usersReducer }),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
-  ],
+    provideEffects()
+],
 };

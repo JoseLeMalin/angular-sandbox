@@ -7,10 +7,10 @@ import { FormsModule } from "@angular/forms";
 import { DividerModule } from "primeng/divider";
 import { select, Store, StoreModule } from "@ngrx/store";
 import { getUsers } from "../store/actions/users.actions";
-import { selectLoading, selectUsers } from "../store/selectors/users.selectors";
 import { Role } from "../store/reducers/users.reducers";
 import { Observable } from "rxjs";
 import { AppStateInterface } from "../types/appState.interface";
+import { selectError, selectLoading, selectUsers } from "./store/selectors";
 
 export type User = {
   id: string;
@@ -33,21 +33,19 @@ export class DashboardComponent implements OnInit, OnDestroy {
   // private store = inject(Store);
   heroes: Hero[] = [];
   users!: User[];
-  usersBis$ = this.store.select(selectUsers);
-  // usersBisa!: User[];
   user!: User;
+  // usersBis$ = this.store.select(selectUsers);
+  usersBis$: Observable<User[]>;
+  error$: Observable<string | null>;
   isLoading$: Observable<boolean>;
 
   constructor(
     private userService: UserService,
-    private store: Store<AppStateInterface>
+    private readonly store: Store<AppStateInterface>
   ) {
     this.isLoading$ = this.store.pipe(select(selectLoading));
-    // this.store.select(selectUsers).pipe(
-    //   map(users => users),
-    //   filter(val => val !== undefined)
-    // );
-    //.subscribe(users => (this.usersBis = users));
+    this.usersBis$ = this.store.pipe(select(selectUsers));
+    this.error$ = this.store.pipe(select(selectError));
   }
 
   callBackendAPI() {

@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppComponent } from "./app.component";
 import { HeroesComponent } from "./heroes/heroes.component";
 import { HttpClientModule } from "@angular/common/http";
+import { StoreModule } from "@ngrx/store";
 
 @NgModule({
   declarations: [],
@@ -17,6 +18,7 @@ import { HttpClientModule } from "@angular/common/http";
     BrowserAnimationsModule,
     HeroesComponent,
     HttpClientModule,
+    StoreModule.forRoot({})
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.

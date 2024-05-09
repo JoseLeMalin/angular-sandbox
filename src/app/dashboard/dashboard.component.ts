@@ -6,11 +6,12 @@ import { UserService } from "../services/user.service";
 import { FormsModule } from "@angular/forms";
 import { DividerModule } from "primeng/divider";
 import { select, Store, StoreModule } from "@ngrx/store";
-import { getUsers } from "../store/actions/users.actions";
+// import { getUsers } from "../store/actions/users.actions";
 import { Observable } from "rxjs";
 import { AppStateInterface } from "../types/appState.interface";
 import { selectError, selectLoading, selectUsers } from "./store/selectors";
 import { User } from "../users/users.model";
+import { getUsers } from "./store/actions";
 
 @Component({
   selector: "app-dashboard",

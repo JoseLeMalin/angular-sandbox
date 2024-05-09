@@ -5,8 +5,9 @@ import routeConfig from "./app.routes";
 import { provideHttpClient } from "@angular/common/http";
 import { provideState, provideStore } from "@ngrx/store";
 import { provideStoreDevtools } from "@ngrx/store-devtools";
-import { usersReducer } from "./store/reducers/users.reducers";
+
 import { provideEffects } from '@ngrx/effects';
+import { usersReducer } from "./dashboard/store/reducer";
 
 export const appConfig: ApplicationConfig = {
   providers: [

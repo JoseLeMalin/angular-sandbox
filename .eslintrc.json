@@ -18,7 +18,7 @@
       "rules": {
         "quotes": "off",
         "prettier/prettier": [
-          1,
+          0,
           {
             "parser": "angular",
             "singleQuote": false
@@ -67,7 +67,7 @@
       ],
       "rules": {
         "prettier/prettier": [
-          1,
+          0,
           {
             "parser": "angular",
             "singleQuote": false

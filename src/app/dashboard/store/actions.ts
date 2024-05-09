@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { User } from "../dashboard.component";
+import { User } from "../../users/users.model";
 
 export const getUser = createAction(
   "[Dashboard Page] Get single user with ID",

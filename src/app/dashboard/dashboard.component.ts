@@ -7,20 +7,10 @@ import { FormsModule } from "@angular/forms";
 import { DividerModule } from "primeng/divider";
 import { select, Store, StoreModule } from "@ngrx/store";
 import { getUsers } from "../store/actions/users.actions";
-import { Role } from "../store/reducers/users.reducers";
 import { Observable } from "rxjs";
 import { AppStateInterface } from "../types/appState.interface";
 import { selectError, selectLoading, selectUsers } from "./store/selectors";
-
-export type User = {
-  id: string;
-  name: string;
-  email: string;
-  createdAt: Date;
-  updatedAt: Date;
-  password: string;
-  role: Role;
-};
+import { User } from "../users/users.model";
 
 @Component({
   selector: "app-dashboard",

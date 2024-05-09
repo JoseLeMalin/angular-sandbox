@@ -1,9 +1,8 @@
 import { createReducer, on } from "@ngrx/store";
-
-import { User } from "../../dashboard/dashboard.component";
 import dayjs from "dayjs";
 import { UserStateInterface } from "../../types/users.types";
 import { createUser, deleteUser, getUsers, getUsersFailure, getUsersSuccess, updateUser } from "./actions";
+import { Role, User } from "../../users/users.model";
 
 export interface AppState {
   isLoading: boolean;
@@ -11,12 +10,12 @@ export interface AppState {
   error: null;
 }
 
-export enum Role {
-  ADMIN = "admin",
-  EDITOR = "editor",
-  READER = "reader",
-  GHOST = "ghost",
-}
+// export enum Role {
+//   ADMIN = "admin",
+//   EDITOR = "editor",
+//   READER = "reader",
+//   GHOST = "ghost",
+// }
 
 // export const initialState: AppState = {
 export const initialState: UserStateInterface = {

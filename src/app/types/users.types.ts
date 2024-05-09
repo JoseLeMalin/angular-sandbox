@@ -1,6 +1,4 @@
-import { User } from "../dashboard/dashboard.component";
-
-
+import { User } from "../users/users.model";
 
 export interface UserStateInterface {
   isLoading: boolean;

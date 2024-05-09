@@ -3,8 +3,7 @@ import { Injectable } from "@angular/core";
 import { catchError, map, Observable, of, tap } from "rxjs";
 import { MessageService } from "./message.service";
 import { z } from "zod";
-import { User } from "../dashboard/dashboard.component";
-import { Role } from "../store/reducers/users.reducers";
+import { Role, User } from "../users/users.model";
 
 const SchemaUser = z.object({
   id: z.string(),

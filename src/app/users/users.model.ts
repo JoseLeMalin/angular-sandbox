@@ -1,10 +1,14 @@
-import { Role } from "../store/reducers/users.reducers";
-
-export interface Book {
+export enum Role {
+  ADMIN = "admin",
+  EDITOR = "editor",
+  READER = "reader",
+  GHOST = "ghost",
+}
+export interface User {
   id: string;
   name: string;
-  password: string;
   email: string;
+  password: string;
   createdAt: Date;
   updatedAt: Date;
   role: Role;

@@ -47,10 +47,10 @@
   </button>
   <div *ngIf="isLoading$ | async">is loading</div>
 
-  <div *ngIf="usersBis$ | async" class="flex flex-row gap-4">
+  <div class="flex flex-col gap-4" *ngIf="usersBis$ | async">
     <p>Dans le p</p>
     <p-divider />
-    <div *ngFor="let user of usersBis$ | async" class="flex flex-row gap-4">
+    <div class="flex flex-row gap-4" *ngFor="let user of usersBis$ | async">
       <label for="id">User ID: </label>
       <input id="id" [(ngModel)]="user.id" placeholder="ID" />
       <label for="name">User name: </label>

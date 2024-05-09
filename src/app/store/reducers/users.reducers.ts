@@ -7,21 +7,14 @@ import {
   getUsersSuccess,
   updateUser,
 } from "../actions/users.actions";
-import { User } from "../../dashboard/dashboard.component";
 import dayjs from "dayjs";
 import { UserStateInterface } from "../../types/users.types";
+import { Role, User } from "../../users/users.model";
 
 export interface AppState {
   isLoading: boolean;
   users: User[];
   error: null;
-}
-
-export enum Role {
-  ADMIN = "admin",
-  EDITOR = "editor",
-  READER = "reader",
-  GHOST = "ghost",
 }
 
 // export const initialState: AppState = {

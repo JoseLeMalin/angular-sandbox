@@ -42,18 +42,6 @@ export const usersReducer = createReducer(
     (state): UserStateInterface => ({
       ...state,
       isLoading: true,
-      users: [
-        ...state.users,
-        {
-          id: "000",
-          name: "Sebastien",
-          email: "seb@seb",
-          createdAt: dayjs().toDate(),
-          updatedAt: dayjs().toDate(),
-          password: "",
-          role: Role.ADMIN,
-        },
-      ],
     })
   ),
   on(

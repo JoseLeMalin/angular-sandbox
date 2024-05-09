@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
-import { usersReducer } from '../store/reducers/users.reducers';
+import { usersReducer } from '../dashboard/store/reducer';
+
 
 
 

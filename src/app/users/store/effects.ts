@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { createUser, createUserSuccess, getUsers, getUsersSuccess } from "./actions";
+import { createUser, createUserSuccess, getUsers, getUsersSuccess, updateUser, updateUserSuccess } from "./actions";
 import { map, mergeMap } from "rxjs";
 import { UserService } from "../../services/user.service";
 
@@ -17,19 +17,19 @@ export class UsersEffects {
   createUser$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(createUser),
-      mergeMap(() => {
-        return this.usersService.createUser().pipe(map(user => createUserSuccess({ user: user })));
+      mergeMap(newUser => {
+        return this.usersService.createUser(newUser.user).pipe(map(user => createUserSuccess({ user })));
       })
     );
   });
-  // updateUser$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(updateUser),
-  //     mergeMap(() => {
-  //       return this.usersService.updateUser().pipe(map(users => updateUserSuccess({ users: users })));
-  //     })
-  //   );
-  // });
+  updateUser$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(updateUser),
+      mergeMap(updatedUser => {
+        return this.usersService.updateUser(updatedUser.user.id).pipe(map(user => updateUserSuccess({ user: user })));
+      })
+    );
+  });
   constructor(
     private actions$: Actions,
     private usersService: UserService

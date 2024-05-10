@@ -50,13 +50,17 @@
   <div class="flex flex-col gap-4" *ngIf="usersBis$ | async">
     <p>Dans le p</p>
     <p-divider />
-    <div class="flex flex-row gap-4" *ngFor="let user of usersBis$ | async">
+    <div class="flex flex-row gap-4" *ngFor="let user of usersBis$ | async" id=`user-${user.id}`>
       <label for="id">User ID: </label>
       <input id="id" [(ngModel)]="user.id" placeholder="ID" />
       <label for="name">User name: </label>
       <input id="name" [(ngModel)]="user.name" placeholder="name" />
       <label for="email">User email: </label>
       <input id="email" [(ngModel)]="user.email" placeholder="email" />
+      <div class="flex flex-row gap-2">
+        <button pButton type="button" (click)="updateUser(user)">Update</button>
+        <button pButton type="button" (click)="deleteUser(user.id)">Delete</button>
+      </div>
     </div>
   </div>
 </div>

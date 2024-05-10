@@ -5,14 +5,14 @@ import { FormsModule } from "@angular/forms";
 import { DividerModule } from "primeng/divider";
 import { select, Store, StoreModule } from "@ngrx/store";
 import { Observable } from "rxjs";
+import {v1} from "uuid"
 
 import { AppStateInterface } from "../types/appState.interface";
 import { UserService } from "../services/user.service";
 import { Role, User } from "../users/users.model";
 import { Hero } from "../services/hero";
 import { selectError, selectLoading, selectUsers } from "../users/store/selectors";
-import { createUser, getUsers } from "../users/store/actions";
-import dayjs from "dayjs";
+import { createUser, deleteUser, getUsers, updateUser } from "../users/store/actions";
 
 @Component({
   selector: "app-dashboard",
@@ -50,15 +50,19 @@ export class DashboardComponent implements OnInit, OnDestroy {
   getSingleUser() {
     console.log("In the getSingleUser btn");
   }
+  updateUser(user: User) {
+    this.store.dispatch(updateUser({ user }));
+  }
+  deleteUser(userId: string) {
+    this.store.dispatch(deleteUser({ userId }));
+  }
   createUser() {
     this.store.dispatch(
       createUser({
         user: {
-          name: "createdUser",
+          name: `createdUser-${v1()}`,
           email: "createdstring@string",
           password: "thenewupdatedpwd",
-          createdAt: dayjs().toString(),
-          updatedAt: dayjs().toString(),
           role: Role.GHOST,
         },
       })

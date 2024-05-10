@@ -16,7 +16,8 @@ export interface User {
   role: Role;
 }
 
-export type CreateUser = Required<Pick<User, "name" | "email" | "password" | "createdAt" | "updatedAt" | "role">>;
+export type CreateUser = Required<Pick<User, "name" | "email" | "password" | "role">>;
+export type UpdateUser = Required<Pick<User, "id">> & Partial<User>;
 
 export interface UserStateInterface {
   isLoading: boolean;
@@ -25,7 +26,7 @@ export interface UserStateInterface {
 }
 
 export const SchemaUser = z.object({
-  id: z.string(),
+  id: z.string().uuid(),
   name: z.string(),
   email: z.string(),
   password: z.string().optional(),
@@ -34,4 +35,5 @@ export const SchemaUser = z.object({
   role: z.nativeEnum(Role),
 });
 export const SchemaUsers = z.array(SchemaUser);
+
 // type UserInfered = z.infer<typeof SchemaUser>;

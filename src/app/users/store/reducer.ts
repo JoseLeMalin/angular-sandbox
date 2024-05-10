@@ -1,6 +1,4 @@
 import { createReducer, on } from "@ngrx/store";
-import dayjs from "dayjs";
-
 import {
   createUser,
   createUserFailure,
@@ -10,8 +8,10 @@ import {
   getUsersFailure,
   getUsersSuccess,
   updateUser,
+  updateUserFailure,
+  updateUserSuccess,
 } from "./actions";
-import { Role, User, UserStateInterface } from "../users.model";
+import { User, UserStateInterface } from "../users.model";
 
 export interface AppState {
   isLoading: boolean;
@@ -75,21 +75,28 @@ export const usersReducer = createReducer(
       error: action.error,
     })
   ),
+
   on(
     updateUser,
+    (state): UserStateInterface => ({
+      ...state,
+      isLoading: true,
+    })
+  ),
+  on(
+    updateUserSuccess,
     (state, action): UserStateInterface => ({
       ...state,
-      users: state.users.map(user =>
-        user.id === action.id
-          ? {
-              ...action,
-              createdAt: dayjs().toString(),
-              updatedAt: dayjs().toString(),
-              password: "the_password-updated",
-              role: Role.EDITOR,
-            }
-          : user
-      ),
+      isLoading: false,
+      users: [...state.users, action.user],
+    })
+  ),
+  on(
+    updateUserFailure,
+    (state, action): UserStateInterface => ({
+      ...state,
+      isLoading: false,
+      error: action.error,
     })
   ),
   on(

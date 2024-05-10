@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, map, Observable, of, tap } from "rxjs";
 import { MessageService } from "./message.service";
-import { SchemaUser, SchemaUsers, User } from "../users/users.model";
+import { CreateUser, SchemaUser, SchemaUsers, User } from "../users/users.model";
 
 @Injectable({
   providedIn: "root",
@@ -36,12 +36,12 @@ export class UserService {
       catchError(this.handleError("searchHeroes", []))
     );
   }
-  createUser() {
-    return this.http.post(`http://localhost:3000/users`, this.httpOptions).pipe(
+  createUser(user: CreateUser): Observable<User> {
+    return this.http.post(`http://localhost:3000/users`, user, this.httpOptions).pipe(
       tap(item => console.log(`createUser Api users: ${item}`)),
       map(responseUser => SchemaUser.safeParse(responseUser)),
       map(responseParsed => {
-        console.log("responseParsed getUsers: ", responseParsed);
+        console.log("responseParsed createUser: ", responseParsed);
 
         if (!responseParsed?.success) {
           throw new Error(responseParsed.error.message);
@@ -54,22 +54,22 @@ export class UserService {
       // catchError(this.handleError("searchHeroes" ))
     );
   }
-  updateUser(): Observable<User[]> {
-    return this.http.put(`http://localhost:3000/users`, this.httpOptions).pipe(
+  updateUser(userId: string): Observable<User> {
+    return this.http.patch(`http://localhost:3000/users/${userId}`, this.httpOptions).pipe(
       tap(item => console.log(`getUsers Api users: ${item}`)),
-      map(responseUsers => SchemaUsers.safeParse(responseUsers)),
+      map(responseUser => SchemaUser.safeParse(responseUser)),
       map(responseParsed => {
-        console.log("responseParsed getUsers: ", responseParsed);
+        console.log("responseParsed updateUser: ", responseParsed);
 
         if (!responseParsed?.success) {
           throw new Error(responseParsed.error.message);
         }
         if (!responseParsed?.data) {
-          return [];
+          throw new Error("No data");
         }
         return responseParsed.data;
       }),
-      catchError(this.handleError("searchHeroes", []))
+      // catchError(this.handleError("searchHeroes", []))
     );
   }
 

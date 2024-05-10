@@ -2,20 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, map, Observable, of, tap } from "rxjs";
 import { MessageService } from "./message.service";
-import { z } from "zod";
-import { Role, User } from "../users/users.model";
-
-const SchemaUser = z.object({
-  id: z.string(),
-  name: z.string(),
-  email: z.string(),
-  createdAt: z.date(),
-  updatedAt: z.date(),
-  password: z.string(),
-  role: z.nativeEnum(Role),
-});
-const SchemaUsers = z.array(SchemaUser);
-// type UserInfered = z.infer<typeof SchemaUser>;
+import { SchemaUser, SchemaUsers, User } from "../users/users.model";
 
 @Injectable({
   providedIn: "root",
@@ -33,6 +20,42 @@ export class UserService {
 
   getUsers() {
     return this.http.get(`http://localhost:3000/users`, this.httpOptions).pipe(
+      tap(item => console.log(`getUsers Api users: `, item)),
+      map(responseUsers => SchemaUsers.safeParse(responseUsers)),
+      map(responseParsed => {
+        console.log("responseParsed getUsers: ", responseParsed);
+
+        if (!responseParsed?.success) {
+          throw new Error(responseParsed.error.message);
+        }
+        if (!responseParsed?.data) {
+          return [];
+        }
+        return responseParsed.data;
+      }),
+      catchError(this.handleError("searchHeroes", []))
+    );
+  }
+  createUser() {
+    return this.http.post(`http://localhost:3000/users`, this.httpOptions).pipe(
+      tap(item => console.log(`createUser Api users: ${item}`)),
+      map(responseUser => SchemaUser.safeParse(responseUser)),
+      map(responseParsed => {
+        console.log("responseParsed getUsers: ", responseParsed);
+
+        if (!responseParsed?.success) {
+          throw new Error(responseParsed.error.message);
+        }
+        if (!responseParsed?.data) {
+          throw new Error("No data");
+        }
+        return responseParsed.data;
+      })
+      // catchError(this.handleError("searchHeroes" ))
+    );
+  }
+  updateUser(): Observable<User[]> {
+    return this.http.put(`http://localhost:3000/users`, this.httpOptions).pipe(
       tap(item => console.log(`getUsers Api users: ${item}`)),
       map(responseUsers => SchemaUsers.safeParse(responseUsers)),
       map(responseParsed => {
@@ -49,12 +72,10 @@ export class UserService {
       catchError(this.handleError("searchHeroes", []))
     );
   }
-  /* getUsersBis() {
-    this.store.dispatch(getUsers())
-  } */
+
   getUser(id: string): Observable<User> {
     return this.http.get(`http://localhost:3000/users/${id}`, this.httpOptions).pipe(
-      tap(item => console.log(`fetched hero id=${id} ${item}`)),
+      tap(item => console.log(`fetched hero id=${id}`, item)),
       map(response => SchemaUser.parse(response)),
       map(resParsed => resParsed)
       // catchError(this.handleError("searchHeroes", []))

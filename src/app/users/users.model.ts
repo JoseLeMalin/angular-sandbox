@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 export enum Role {
   ADMIN = "admin",
   EDITOR = "editor",
@@ -8,8 +10,28 @@ export interface User {
   id: string;
   name: string;
   email: string;
-  password: string;
-  createdAt: Date;
-  updatedAt: Date;
+  password?: string;
+  createdAt: string;
+  updatedAt: string;
   role: Role;
 }
+
+export type CreateUser = Required<Pick<User, "name" | "email" | "password" | "createdAt" | "updatedAt" | "role">>;
+
+export interface UserStateInterface {
+  isLoading: boolean;
+  users: User[];
+  error: string | null;
+}
+
+export const SchemaUser = z.object({
+  id: z.string(),
+  name: z.string(),
+  email: z.string(),
+  password: z.string().optional(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+  role: z.nativeEnum(Role),
+});
+export const SchemaUsers = z.array(SchemaUser);
+// type UserInfered = z.infer<typeof SchemaUser>;

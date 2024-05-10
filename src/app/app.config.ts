@@ -7,8 +7,8 @@ import { provideState, provideStore } from "@ngrx/store";
 import { provideStoreDevtools } from "@ngrx/store-devtools";
 
 import { provideEffects } from '@ngrx/effects';
-import { usersReducer } from "./dashboard/store/reducer";
-import { UsersEffects } from "./dashboard/store/effects";
+import { usersReducer } from "./users/store/reducer";
+import { UsersEffects } from "./users/store/effects";
 
 export const appConfig: ApplicationConfig = {
   providers: [

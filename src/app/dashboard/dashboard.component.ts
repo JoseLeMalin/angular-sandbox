@@ -1,17 +1,18 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Hero } from "../services/hero";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
-import { UserService } from "../services/user.service";
 import { FormsModule } from "@angular/forms";
 import { DividerModule } from "primeng/divider";
 import { select, Store, StoreModule } from "@ngrx/store";
-// import { getUsers } from "../store/actions/users.actions";
 import { Observable } from "rxjs";
+
 import { AppStateInterface } from "../types/appState.interface";
-import { selectError, selectLoading, selectUsers } from "./store/selectors";
-import { User } from "../users/users.model";
-import { getUsers } from "./store/actions";
+import { UserService } from "../services/user.service";
+import { Role, User } from "../users/users.model";
+import { Hero } from "../services/hero";
+import { selectError, selectLoading, selectUsers } from "../users/store/selectors";
+import { createUser, getUsers } from "../users/store/actions";
+import dayjs from "dayjs";
 
 @Component({
   selector: "app-dashboard",
@@ -48,14 +49,20 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
   getSingleUser() {
     console.log("In the getSingleUser btn");
-
-    // this.store.dispatch(getSingleUser());
-    // this.userService.getUsers();
-    // this.userService.getUser("9aa28082-cb3c-439d-b209-b88301a5db16").subscribe(response => (this.user = response));
-    // store.dispatch(login({ username: username, password: password }));
   }
   createUser() {
-    // this.store.dispatch(createUser({ userId: " v4()", name: "createdUser", email: "createdstring@string" }));
+    this.store.dispatch(
+      createUser({
+        user: {
+          name: "createdUser",
+          email: "createdstring@string",
+          password: "thenewupdatedpwd",
+          createdAt: dayjs().toString(),
+          updatedAt: dayjs().toString(),
+          role: Role.GHOST,
+        },
+      })
+    );
     // this.userService.getUser("9aa28082-cb3c-439d-b209-b88301a5db16").subscribe(response => (this.user = response));
     // store.dispatch(login({ username: username, password: password }));
   }

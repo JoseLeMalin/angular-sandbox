@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, map, Observable, of, tap } from "rxjs";
 import { MessageService } from "./message.service";
-import { CreateUser, SchemaUser, SchemaUsers, User } from "../users/users.model";
+import { CreateUser, SchemaUser, SchemaUsers, UpdateUser, User } from "../users/users.model";
 
 @Injectable({
   providedIn: "root",
@@ -54,8 +54,8 @@ export class UserService {
       // catchError(this.handleError("searchHeroes" ))
     );
   }
-  updateUser(userId: string): Observable<User> {
-    return this.http.patch(`http://localhost:3000/users/${userId}`, this.httpOptions).pipe(
+  updateUser(userId: string, updateUserContent: UpdateUser): Observable<User> {
+    return this.http.patch(`http://localhost:3000/users/${userId}`, updateUserContent, this.httpOptions).pipe(
       tap(item => console.log(`getUsers Api users: ${item}`)),
       map(responseUser => SchemaUser.safeParse(responseUser)),
       map(responseParsed => {
@@ -68,7 +68,7 @@ export class UserService {
           throw new Error("No data");
         }
         return responseParsed.data;
-      }),
+      })
       // catchError(this.handleError("searchHeroes", []))
     );
   }

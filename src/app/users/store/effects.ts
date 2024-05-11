@@ -26,7 +26,9 @@ export class UsersEffects {
     return this.actions$.pipe(
       ofType(updateUser),
       mergeMap(updatedUser => {
-        return this.usersService.updateUser(updatedUser.user.id).pipe(map(user => updateUserSuccess({ user: user })));
+        return this.usersService
+          .updateUser(updatedUser.user.id, updatedUser.user)
+          .pipe(map(user => updateUserSuccess({ user: user })));
       })
     );
   });

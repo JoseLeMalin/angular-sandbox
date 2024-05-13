@@ -1,20 +1,61 @@
-<p-tabView  [style]="{ color: 'blue' }">
-  <p-tabPanel style="color: aqua; background-color: black;" header="Header I" >
-    <form form #f="ngForm" [formGroup]="formGroup" (ngSubmit)="onSubmit()" >
+<p-tabView [style]="{ color: 'blue' }">
+  <p-tabPanel header="Header I">
+    <form form #f="ngForm" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
       <div class="flex flex-col flex-wrap gap-2">
         <div class="flex flex-row flex-wrap gap-4">
-          <div class="flex basis-full" >
-            <p>Value: {{ formGroup.value.nameTest }}</p>
+          <div class="flex basis-full">
+            <p>Value: {{ formGroup.value.cityName }}</p>
           </div>
           <div class="flex basis-full flex-row flex-wrap justify-evenly">
-
             <div class="flex basis-5/12 flex-grow-1 flex-shrink-1">
               <label class="flex basis-1/3" for="nameTest">Name</label>
-              <input class="flex basis-2/3" [formControl]="nameTest" pInputText id="nameTest" name="nameTest" type="text" required />
+              <input
+                class="flex basis-2/3"
+                [formControl]="cityName"
+                pInputText
+                id="cityName"
+                name="cityName"
+                type="text"
+                required />
             </div>
             <div class="flex basis-5/12 flex-grow-1 flex-shrink-1">
-              <label class="flex basis-1/3" for="age">Age</label>
-              <input class="flex basis-2/3" [formControl]="age" pInputText id="age" name="age" type="number" required />
+              <label class="flex basis-1/3" for="age">Population</label>
+              <input
+                class="flex basis-2/3"
+                [formControl]="population"
+                pInputText
+                id="population"
+                name="population"
+                type="number"
+                required />
+            </div>
+          </div>
+          <p-divider />
+          <div class="flex basis-full" style="color: cadetblue">
+            <p>City Coordinates</p>
+          </div>
+          <div class="flex basis-full flex-row flex-wrap justify-evenly">
+            <div class="flex basis-5/12 flex-grow-1 flex-shrink-1">
+              <label class="flex basis-1/3" style="color: thistle" for="latitude">Name</label>
+              <input
+                class="flex basis-2/3"
+                [formControl]="latitude"
+                pInputText
+                id="latitude"
+                name="latitude"
+                type="text"
+                required />
+            </div>
+            <div class="flex basis-5/12 flex-grow-1 flex-shrink-1">
+              <label class="flex basis-1/3" style="color: thistle" for="age">longitude</label>
+              <input
+                class="flex basis-2/3"
+                [formControl]="longitude"
+                pInputText
+                id="longitude"
+                name="longitude"
+                type="number"
+                required />
             </div>
           </div>
         </div>

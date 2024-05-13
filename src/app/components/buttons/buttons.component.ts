@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 
 @Component({
   selector: "app-buttons",
@@ -12,9 +12,12 @@ export class ButtonsComponent {
   //   console.log(test);
   // });
   @Output() clickEvent = new EventEmitter<MouseEvent>();
+  @Input() disabled : boolean = false;
+  
   constructor() {
     // this.fnToProcess = () => {};
     console.log("In the constructor");
+
   }
   onClickAction(event: MouseEvent) {
     console.log("event in the button comp", event);

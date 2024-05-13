@@ -2,13 +2,14 @@ import { CommonModule } from "@angular/common";
 import { AfterViewInit, Component } from "@angular/core";
 import * as L from "leaflet";
 import { MarkerService } from "../services/marker.service";
+import { FormComponent } from "./form/form.component";
 
 @Component({
-  selector: "app-map-sandbox",
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: "./map-sandbox.component.html",
-  styleUrl: "./map-sandbox.component.css",
+    selector: "app-map-sandbox",
+    standalone: true,
+    templateUrl: "./map-sandbox.component.html",
+    styleUrl: "./map-sandbox.component.css",
+    imports: [CommonModule, FormComponent]
 })
 export class MapSandboxComponent implements AfterViewInit {
   map!: L.Map;

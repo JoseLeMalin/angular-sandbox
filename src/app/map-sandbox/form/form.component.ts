@@ -1,11 +1,12 @@
 import { Component } from "@angular/core";
 import { FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule } from "@angular/forms";
 import { ButtonsComponent } from "../../components/buttons/buttons.component";
+import { TabViewModule } from 'primeng/tabview';
 
 @Component({
   selector: "app-form",
   standalone: true,
-  imports: [ReactiveFormsModule, ButtonsComponent, FormsModule],
+  imports: [ReactiveFormsModule, ButtonsComponent, FormsModule, TabViewModule],
   templateUrl: "./form.component.html",
   styleUrl: "./form.component.css",
 })

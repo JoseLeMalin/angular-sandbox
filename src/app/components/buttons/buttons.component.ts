@@ -17,7 +17,7 @@ export class ButtonsComponent {
     console.log("In the constructor");
   }
   onClickAction(event: MouseEvent) {
-    console.log(event);
+    console.log("event in the button comp", event);
 
     this.clickEvent.emit(event);
   }

@@ -51,8 +51,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   getSingleUser() {
     console.log("In the getSingleUser btn");
   }
-  updateUser() 
-  {
+  updateUser() {
     const updatedUser: UpdateUser = {
       id: "bc76c1f5-76ac-4034-9268-b8b803ec25b7",
       createdAt: dayjs().toString(),

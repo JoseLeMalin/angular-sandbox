@@ -1,16 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { StoreModule } from '@ngrx/store';
-import { usersReducer } from './store/reducer';
-
-
-
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { StoreModule } from "@ngrx/store";
+import { usersReducer } from "./store/reducer";
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    StoreModule.forFeature('users', usersReducer)
-  ]
+  imports: [CommonModule, StoreModule.forFeature("users", usersReducer)],
 })
-export class UsersModule { }
+export class UsersModule {}

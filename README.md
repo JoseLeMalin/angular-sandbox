@@ -35,6 +35,10 @@ pnpm install -D tailwindcss postcss autoprefixer
 ### Dependency injection in Angular
         https://angular.dev/guide/di
 
+## @TODO
+        Use yield with an API to send x queries => Wait for the response and fire new ones
+
+
 ## Rxjs:
 ### Learn RxJS Angular, RxJS pipe, async pipe, RxJS observables, Behaviorsubject, Combinelatest
         https://www.youtube.com/watch?v=2T3F5TfrYwI

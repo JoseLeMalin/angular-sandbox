@@ -12,12 +12,13 @@ export class ButtonsComponent {
   //   console.log(test);
   // });
   @Output() clickEvent = new EventEmitter<MouseEvent>();
-  @Input() disabled : boolean = false;
-  
-  constructor() {
-    // this.fnToProcess = () => {};
-    console.log("In the constructor");
+  @Input() disabled: boolean = false;
+  @Input() label!: string;
 
+  constructor() {
+    if (!this.label) {
+      this.label = "default";
+    }
   }
   onClickAction(event: MouseEvent) {
     console.log("event in the button comp", event);

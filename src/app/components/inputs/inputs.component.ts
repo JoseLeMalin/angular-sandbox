@@ -1,12 +1,10 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-inputs',
+  selector: "app-inputs",
   standalone: true,
   imports: [],
-  templateUrl: './inputs.component.html',
-  styleUrl: './inputs.component.css'
+  templateUrl: "./inputs.component.html",
+  styleUrl: "./inputs.component.css",
 })
-export class InputsComponent {
-
-}
+export class InputsComponent {}

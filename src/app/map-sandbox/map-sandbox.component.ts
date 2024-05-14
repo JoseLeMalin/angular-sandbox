@@ -5,11 +5,11 @@ import { MarkerService } from "../services/marker.service";
 import { FormComponent } from "./form/form.component";
 
 @Component({
-    selector: "app-map-sandbox",
-    standalone: true,
-    templateUrl: "./map-sandbox.component.html",
-    styleUrl: "./map-sandbox.component.css",
-    imports: [CommonModule, FormComponent]
+  selector: "app-map-sandbox",
+  standalone: true,
+  templateUrl: "./map-sandbox.component.html",
+  styleUrl: "./map-sandbox.component.css",
+  imports: [CommonModule, FormComponent],
 })
 export class MapSandboxComponent implements AfterViewInit {
   map!: L.Map;

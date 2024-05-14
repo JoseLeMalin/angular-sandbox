@@ -1,15 +1,19 @@
 import { Component, inject } from "@angular/core";
 import {
+  AbstractControl,
   FormArray,
   FormControl,
   FormGroup,
   FormsModule,
   NonNullableFormBuilder,
   ReactiveFormsModule,
+  ValidationErrors,
+  Validators,
 } from "@angular/forms";
 import { ButtonsComponent } from "../../components/buttons/buttons.component";
 import { TabViewModule } from "primeng/tabview";
 import { DividerModule } from "primeng/divider";
+import { map, Observable, of } from "rxjs";
 
 type FormCity = FormGroup<{
   cityName: FormControl<string>;
@@ -24,6 +28,12 @@ type FormTest = FormGroup<{
   cities: FormArray<FormCity>;
 }>;
 
+const asyncRowValidator = (control: AbstractControl): Observable<ValidationErrors | null> => {
+  console.log("We reacin' here ?");
+
+  return of(control.value).pipe(map(value => (value === "test" ? null : { forbiddenText: "Test is not allowed" })));
+};
+
 @Component({
   selector: "app-form",
   standalone: true,
@@ -33,6 +43,7 @@ type FormTest = FormGroup<{
 })
 export class FormComponent {
   formBuilder = inject(NonNullableFormBuilder);
+  constructor() {}
 
   formGroupBuilt: FormTest = this.formBuilder.group({
     cities: this.formBuilder.array<FormCity>([this.generateCities()]),
@@ -43,26 +54,16 @@ export class FormComponent {
   }
   generateCities(): FormCity {
     return this.formBuilder.group({
-      cityName: this.formBuilder.control(""),
-      population: this.formBuilder.control(""),
+      // cityName: this.formBuilder.control("", { validators: [Validators.required, Validators.minLength(2)] }),
+      cityName: this.formBuilder.control("", { asyncValidators: [asyncRowValidator] }),
+      population: this.formBuilder.control("qsd"),
       coordinates: this.formBuilder.group({
-        latitude: this.formBuilder.control(""),
-        longitude: this.formBuilder.control(""),
+        latitude: this.formBuilder.control("qsd"),
+        longitude: this.formBuilder.control("qsd"),
       }),
     });
   }
-  // https://www.youtube.com/watch?v=ZFAFSB9R2jc&t=66s
-  // Dynamic Nested Forms Angular Explained
-  // formGroupNN = this.formBuilder.group({
-  //   cityName: ["", { disabled: false }],
-  //   population: ["", { disabled: false }],
-  //   coordinates: this.formBuilder.group({
-  //     latitude: [0, { disabled: false }],
-  //     longitude: [0, { disabled: false }],
-  //   }),
-  // });
 
-  constructor() {}
   functioncall(e: MouseEvent) {
     console.log("event in the functioncall parent", this.formGroupBuilt.value, e);
   }

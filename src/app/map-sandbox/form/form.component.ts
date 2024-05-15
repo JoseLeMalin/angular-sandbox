@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import {
   AbstractControl,
   FormArray,
@@ -8,7 +8,6 @@ import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
   ValidationErrors,
-  Validators,
 } from "@angular/forms";
 import { ButtonsComponent } from "../../components/buttons/buttons.component";
 import { TabViewModule } from "primeng/tabview";
@@ -40,6 +39,7 @@ const asyncRowValidator = (control: AbstractControl): Observable<ValidationError
   imports: [ReactiveFormsModule, ButtonsComponent, FormsModule, TabViewModule, DividerModule],
   templateUrl: "./form.component.html",
   styleUrl: "./form.component.css",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormComponent {
   formBuilder = inject(NonNullableFormBuilder);

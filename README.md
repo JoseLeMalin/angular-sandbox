@@ -52,3 +52,13 @@ pnpm install -D tailwindcss postcss autoprefixer
 ## Angular Signals
         Great video 10/10: Understand Angular Signals in 20 Minutes
         https://www.youtube.com/watch?v=0jdyzCHzPxo
+
+## Change detection:
+### Default change detection:
+        https://blog.angular-university.io/how-does-angular-2-change-detection-really-work/$
+
+### Onpush change detection:
+        https://blog.angular-university.io/onpush-change-detection-how-it-works/
+
+## Development Patterns
+        https://refactoring.guru/

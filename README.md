@@ -62,3 +62,6 @@ pnpm install -D tailwindcss postcss autoprefixer
 
 ## Development Patterns
         https://refactoring.guru/
+
+## Quicktype
+        https://quicktype.io/

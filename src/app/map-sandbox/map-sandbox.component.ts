@@ -1,8 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { AfterViewInit, Component } from "@angular/core";
 import * as L from "leaflet";
-import { MarkerService } from "../services/marker.service";
 import { FormComponent } from "./form/form.component";
+import { MarkerService } from "@services/marker.service";
 
 @Component({
   selector: "app-map-sandbox",

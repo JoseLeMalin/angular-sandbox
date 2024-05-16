@@ -9,10 +9,10 @@ import {
   ReactiveFormsModule,
   ValidationErrors,
 } from "@angular/forms";
-import { ButtonsComponent } from "../../components/buttons/buttons.component";
 import { TabViewModule } from "primeng/tabview";
 import { DividerModule } from "primeng/divider";
 import { map, Observable, of } from "rxjs";
+import { ButtonsComponent } from "@components/buttons/buttons.component";
 
 type FormCity = FormGroup<{
   cityName: FormControl<string>;

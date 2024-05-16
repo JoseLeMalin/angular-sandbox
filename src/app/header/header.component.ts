@@ -11,5 +11,5 @@ import { Router, RouterModule } from "@angular/router";
 })
 export class HeaderComponent {
   constructor() {}
-  router = inject(Router);
+  readonly router = inject(Router);
 }

@@ -38,8 +38,8 @@ import { FooterComponent } from "./footer/footer.component";
   imports: [CommonModule, HomeComponent, RouterModule, HeaderComponent, FooterComponent],
 })
 export class AppComponent {
-  router = inject(Router);
-  title = "Angular Sandbox";
+  readonly router = inject(Router);
+  readonly title = "Angular Sandbox";
   constructor(private location: Location) {}
 
   goBack() {

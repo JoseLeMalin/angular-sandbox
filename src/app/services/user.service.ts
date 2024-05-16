@@ -8,7 +8,7 @@ import { CreateUser, SchemaUser, SchemaUsers, UpdateUser, User } from "../users/
   providedIn: "root",
 })
 export class UserService {
-  httpOptions = {
+  readonly httpOptions = {
     headers: new HttpHeaders({
       "Content-Type": "application/json",
     }),

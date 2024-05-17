@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { RouterModule } from "@angular/router";
 
 @Component({
   selector: "app-buttons",
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: "./buttons.component.html",
   styleUrl: "./buttons.component.css",
 })
@@ -11,13 +12,15 @@ export class ButtonsComponent {
   // fnToProcess = inject((test: string) => {
   //   console.log(test);
   // });
-  @Output() clickEvent = new EventEmitter<MouseEvent>();
   @Input() disabled: boolean = false;
   @Input() label!: string;
+  @Input() routerLink!: string;
+  @Output() clickEvent = new EventEmitter<MouseEvent>();
 
   constructor() {
     if (!this.label) {
       this.label = "default";
+      this.routerLink = this.routerLink || "";
     }
   }
   onClickAction(event: MouseEvent) {

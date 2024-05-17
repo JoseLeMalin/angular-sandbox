@@ -11,7 +11,7 @@ import { FooterComponent } from "./footer/footer.component";
   standalone: true,
   template: `
     <app-header></app-header>
-    <main class="main-container container bg-gray-300">
+    <main class="main-container bg-gray-300">
       <section class="flex flex-col gap-4 border-2">
         <div *ngIf="router.url !== '/'" class="flex flex-column pb-2">
           <button

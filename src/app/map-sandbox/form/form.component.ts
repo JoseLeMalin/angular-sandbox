@@ -28,7 +28,6 @@ type FormTest = FormGroup<{
 }>;
 
 const asyncRowValidator = (control: AbstractControl): Observable<ValidationErrors | null> => {
-  console.log("We reacin' here ?");
 
   return of(control.value).pipe(map(value => (value === "test" ? null : { forbiddenText: "Test is not allowed" })));
 };

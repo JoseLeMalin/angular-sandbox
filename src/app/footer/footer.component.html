@@ -1,15 +1,8 @@
-<footer class="bg-slate-400 flex flex-column mt-2 pt-2 gap-6">
+<footer class="bg-slate-400 flex flex-column gap-6">
   <div>
-    <button [routerLink]="['/']">
-      <img class="brand-logo" src="/assets/logo.svg" alt="logo" aria-hidden="true" />
-    </button>
+    <img class="brand-logo" src="/assets/logo.svg" alt="logo" aria-hidden="true" />
   </div>
   <div>
-    <button
-      pButton
-      class="bg-violet-500 text-gray-100 hover:bg-sky-400 hover:text-black shadow-lg rounded-md text-lg focus:ring-violet-300 light:from-neutral-300 light:focus:outline-none light:focus:ring dark:bg-purple-500 dark:text-white dark:hover:bg-sky-400 dark:hover:text-black"
-      [routerLink]="['/heroes']">
-      Go to Heroes
-    </button>
+    <app-buttons (clickEvent)="clicked()" routerLink="/map" label="Go to Heroes"></app-buttons>
   </div>
 </footer>

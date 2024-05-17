@@ -9,6 +9,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { StoreModule } from "@ngrx/store";
 import { GlobalErrorHandlerComponent } from "./core/global-error-handler/global-error-handler.component";
 import { GlobalToastComponent } from "@components/toasts/global-toast/global-toast.component";
+import { ToastModule } from "primeng/toast";
+import { MessageService } from 'primeng/api'
 
 
 @NgModule({
@@ -18,6 +20,7 @@ import { GlobalToastComponent } from "@components/toasts/global-toast/global-toa
       provide: ErrorHandler,
       useClass: GlobalErrorHandlerComponent,
     },
+    MessageService
   ],
   imports: [
     CommonModule,
@@ -28,6 +31,8 @@ import { GlobalToastComponent } from "@components/toasts/global-toast/global-toa
     HeroesComponent,
     HttpClientModule,
     StoreModule.forRoot({}),
+    GlobalToastComponent,
+    ToastModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.

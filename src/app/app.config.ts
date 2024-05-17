@@ -9,6 +9,7 @@ import { provideStoreDevtools } from "@ngrx/store-devtools";
 import { provideEffects } from "@ngrx/effects";
 import { usersReducer } from "./users/store/reducer";
 import { UsersEffects } from "./users/store/effects";
+import { provideAnimations } from "@angular/platform-browser/animations";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,6 +17,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routeConfig),
     provideHttpClient(),
     provideStore(),
+    provideAnimations(),
     provideState({ name: "users", reducer: usersReducer }),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideEffects([UsersEffects]),

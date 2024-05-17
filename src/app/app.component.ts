@@ -5,12 +5,17 @@ import { CommonModule } from "@angular/common";
 import { Location } from "@angular/common";
 import { HeaderComponent } from "./header/header.component";
 import { FooterComponent } from "./footer/footer.component";
+import { ToastModule } from "primeng/toast";
+import { MessageService } from "primeng/api";
 
 @Component({
   selector: "app-root",
   standalone: true,
+  providers: [MessageService],
   template: `
     <app-header></app-header>
+    <p-toast position="top-center" (onClose)="onReject()" />
+    <!-- <app-global-toast></app-global-toast> -->
     <main class="main-container bg-gray-300">
       <section class="flex flex-col gap-4 border-2">
         <div *ngIf="router.url !== '/'" class="flex flex-column pb-2">
@@ -32,6 +37,9 @@ import { FooterComponent } from "./footer/footer.component";
           <router-outlet></router-outlet>
         </div>
       </section>
+      <div>
+        <button (click)="throwError()">Throw</button>
+      </div>
     </main>
     <app-footer></app-footer>
   `,
@@ -39,6 +47,7 @@ import { FooterComponent } from "./footer/footer.component";
   imports: [
     CommonModule,
     HomeComponent,
+    ToastModule,
     RouterModule,
     HeaderComponent,
     FooterComponent,
@@ -47,9 +56,18 @@ import { FooterComponent } from "./footer/footer.component";
 export class AppComponent {
   readonly router = inject(Router);
   readonly title = "Angular Sandbox";
-  constructor(private location: Location) {}
+  constructor(
+    private location: Location,
+    private messageService: MessageService
+  ) {}
 
   goBack() {
     this.location.back();
+  }
+  throwError() {
+    this.messageService.add({ severity: "success", summary: "Success", detail: "Message Content" });
+  }
+  onReject() {
+    this.messageService.clear("confirm");
   }
 }

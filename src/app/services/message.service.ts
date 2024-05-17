@@ -5,6 +5,7 @@ import { UIMessage } from "../types/messages.types";
   providedIn: "root",
 })
 export class MessageService {
+  constructor() {}
   messages: (UIMessage | string)[] = [];
 
   add(message: string) {

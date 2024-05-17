@@ -63,7 +63,9 @@
         <div>
           <p>Form Status: {{ formGroupBuilt.status }}</p>
         </div>
-        <app-buttons (clickEvent)="functioncall($event)" [disabled]="!formGroupBuilt.valid"></app-buttons>
+        <app-buttons
+          (clickEvent)="functioncall($event)"
+          [disabled]="!formGroupBuilt.valid"></app-buttons>
       </div>
     </form>
   </p-tabPanel>

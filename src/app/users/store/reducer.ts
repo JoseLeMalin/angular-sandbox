@@ -101,6 +101,9 @@ export const usersReducer = createReducer(
   ),
   on(
     deleteUser,
-    (state, { userId }): UserStateInterface => ({ ...state, users: state.users.filter(user => user.id !== userId) })
+    (state, { userId }): UserStateInterface => ({
+      ...state,
+      users: state.users.filter(user => user.id !== userId),
+    })
   )
 );

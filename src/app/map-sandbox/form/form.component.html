@@ -24,7 +24,9 @@
                     type="text" />
                 </div>
                 <div class="flex basis-5/12 flex-grow-1 flex-shrink-1">
-                  <label class="flex basis-1/3" for="age">Population {{ city.controls.population.value }}</label>
+                  <label class="flex basis-1/3" for="age"
+                    >Population {{ city.controls.population.value }}</label
+                  >
                   <input
                     class="flex basis-2/3"
                     formControlName="population"
@@ -39,9 +41,13 @@
               <div class="flex basis-full" style="color: cadetblue">
                 <p>City Coordinates</p>
               </div>
-              <div class="flex basis-full flex-row flex-wrap justify-evenly" [formGroup]="city.controls.coordinates">
+              <div
+                class="flex basis-full flex-row flex-wrap justify-evenly"
+                [formGroup]="city.controls.coordinates">
                 <div class="flex basis-5/12 flex-grow-1 flex-shrink-1">
-                  <label class="flex basis-1/3" style="color: thistle" for="latitude">Latitude</label>
+                  <label class="flex basis-1/3" style="color: thistle" for="latitude"
+                    >Latitude</label
+                  >
                   <input
                     class="flex basis-2/3"
                     formControlName="latitude"
@@ -52,7 +58,9 @@
                     required />
                 </div>
                 <div class="flex basis-5/12 flex-grow-1 flex-shrink-1">
-                  <label class="flex basis-1/3" style="color: thistle" for="longitude">longitude</label>
+                  <label class="flex basis-1/3" style="color: thistle" for="longitude"
+                    >longitude</label
+                  >
                   <input
                     class="flex basis-2/3"
                     formControlName="longitude"

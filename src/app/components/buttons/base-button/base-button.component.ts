@@ -1,20 +1,16 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 
 @Component({
-  selector: "app-buttons",
+  selector: "app-base-button",
   standalone: true,
   imports: [],
-  templateUrl: "./buttons.component.html",
-  styleUrl: "./buttons.component.css",
+  templateUrl: "./base-button.component.html",
+  styleUrl: "./base-button.component.css",
 })
-export class ButtonsComponent {
-  // fnToProcess = inject((test: string) => {
-  //   console.log(test);
-  // });
+export class BaseButtonComponent {
   @Input() disabled: boolean = false;
   @Input() label!: string;
   @Output() clickEvent = new EventEmitter<MouseEvent>();
-
   constructor() {
     if (!this.label) {
       this.label = "default";
@@ -25,7 +21,4 @@ export class ButtonsComponent {
 
     this.clickEvent.emit(event);
   }
-  /* processFunction = () => {
-    this.fnToProcess();
-  }; */
 }

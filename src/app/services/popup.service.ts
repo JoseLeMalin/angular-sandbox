@@ -11,6 +11,10 @@ type Capitapopup = {
 export class PopupService {
   constructor() {}
   makePopup({ name, population, state }: Capitapopup) {
-    return `<div>Capital: ${name}</div>` + `<div>State: ${state}</div>` + `<div>Population: ${population}</div>`;
+    return (
+      `<div>Capital: ${name}</div>` +
+      `<div>State: ${state}</div>` +
+      `<div>Population: ${population}</div>`
+    );
   }
 }

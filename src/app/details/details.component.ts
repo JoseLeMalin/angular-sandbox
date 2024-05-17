@@ -11,7 +11,10 @@ import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
   imports: [CommonModule, ReactiveFormsModule],
   template: `
     <article>
-      <img class="listing-photo" [src]="housingLocation?.photo" alt="Exterior photo of {{ housingLocation?.name }}" />
+      <img
+        class="listing-photo"
+        [src]="housingLocation?.photo"
+        alt="Exterior photo of {{ housingLocation?.name }}" />
       <section class="listing-description">
         <h2 class="listing-heading">{{ housingLocation?.name }}</h2>
         <p class="listing-location">{{ housingLocation?.city }}, {{ housingLocation?.state }}</p>
@@ -64,7 +67,9 @@ export class DetailsComponent {
 
   constructor(private router: Router) {
     const housingLocationId = Number(this.route.snapshot.params["id"]);
-    this.housingService.getHousingLocationById(housingLocationId).then(houseItem => (this.housingLocation = houseItem));
+    this.housingService
+      .getHousingLocationById(housingLocationId)
+      .then(houseItem => (this.housingLocation = houseItem));
   }
 
   goBack() {

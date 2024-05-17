@@ -12,13 +12,18 @@ import { HousingService } from "../services/housing.service";
     <section>
       <form>
         <input type="text" placeholder="Filter by city" #filter />
-        <button class="hover:bg-sky-400 hover:text-black" type="button" (click)="filterResults(filter.value)">
+        <button
+          class="hover:bg-sky-400 hover:text-black"
+          type="button"
+          (click)="filterResults(filter.value)">
           Search
         </button>
       </form>
     </section>
     <section class="results">
-      <app-housing-location *ngFor="let housingLocation of filteredLocationList" [housingLocation]="housingLocation">
+      <app-housing-location
+        *ngFor="let housingLocation of filteredLocationList"
+        [housingLocation]="housingLocation">
       </app-housing-location>
     </section>
   `,
@@ -54,7 +59,8 @@ const array = [
     name: "Acme Fresh Start Housing",
     city: "Chicago",
     state: "IL",
-    photo: "https://angular.io/assets/images/tutorials/faa/bernard-hermant-CLKGGwIBTaY-unsplash.jpg",
+    photo:
+      "https://angular.io/assets/images/tutorials/faa/bernard-hermant-CLKGGwIBTaY-unsplash.jpg",
     availableUnits: 4,
     wifi: true,
     laundry: true,
@@ -74,7 +80,8 @@ const array = [
     name: "Warm Beds Housing Support",
     city: "Juneau",
     state: "AK",
-    photo: "https://angular.io/assets/images/tutorials/faa/i-do-nothing-but-love-lAyXdl1-Wmc-unsplash.jpg",
+    photo:
+      "https://angular.io/assets/images/tutorials/faa/i-do-nothing-but-love-lAyXdl1-Wmc-unsplash.jpg",
     availableUnits: 1,
     wifi: false,
     laundry: false,
@@ -94,7 +101,8 @@ const array = [
     name: "Happy Homes Group",
     city: "Gary",
     state: "IN",
-    photo: "https://angular.io/assets/images/tutorials/faa/krzysztof-hepner-978RAXoXnH4-unsplash.jpg",
+    photo:
+      "https://angular.io/assets/images/tutorials/faa/krzysztof-hepner-978RAXoXnH4-unsplash.jpg",
     availableUnits: 1,
     wifi: true,
     laundry: false,

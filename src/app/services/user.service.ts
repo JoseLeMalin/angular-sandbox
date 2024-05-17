@@ -55,22 +55,24 @@ export class UserService {
     );
   }
   updateUser(userId: string, updateUserContent: UpdateUser): Observable<User> {
-    return this.http.patch(`http://localhost:3000/users/${userId}`, updateUserContent, this.httpOptions).pipe(
-      tap(item => console.log(`getUsers Api users: ${item}`)),
-      map(responseUser => SchemaUser.safeParse(responseUser)),
-      map(responseParsed => {
-        console.log("responseParsed updateUser: ", responseParsed);
+    return this.http
+      .patch(`http://localhost:3000/users/${userId}`, updateUserContent, this.httpOptions)
+      .pipe(
+        tap(item => console.log(`getUsers Api users: ${item}`)),
+        map(responseUser => SchemaUser.safeParse(responseUser)),
+        map(responseParsed => {
+          console.log("responseParsed updateUser: ", responseParsed);
 
-        if (!responseParsed?.success) {
-          throw new Error(responseParsed.error.message);
-        }
-        if (!responseParsed?.data) {
-          throw new Error("No data");
-        }
-        return responseParsed.data;
-      })
-      // catchError(this.handleError("searchHeroes", []))
-    );
+          if (!responseParsed?.success) {
+            throw new Error(responseParsed.error.message);
+          }
+          if (!responseParsed?.data) {
+            throw new Error("No data");
+          }
+          return responseParsed.data;
+        })
+        // catchError(this.handleError("searchHeroes", []))
+      );
   }
 
   getUser(id: string): Observable<User> {

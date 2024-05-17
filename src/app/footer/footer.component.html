@@ -1,8 +1,10 @@
 <footer class="bg-slate-400 flex flex-column gap-6">
   <div>
-    <img class="brand-logo" src="/assets/logo.svg" alt="logo" aria-hidden="true" />
+    <app-router-button routerLink="/">
+      <img class="brand-logo" src="/assets/logo.svg" alt="logo" aria-hidden="true" />
+    </app-router-button>
   </div>
   <div>
-    <app-buttons (clickEvent)="clicked()" routerLink="/map" label="Go to Heroes"></app-buttons>
+    <app-base-button (clickEvent)="clicked()">sdfdsfdsfdf</app-base-button>
   </div>
 </footer>

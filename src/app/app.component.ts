@@ -17,7 +17,8 @@ import { FooterComponent } from "./footer/footer.component";
           <button
             pButton
             routerLink="/"
-            class="bg-violet-500 text-gray-100 hover:bg-sky-400 hover:text-black shadow-lg rounded-md w-32 h-7 text-lg focus:ring-violet-300 
+            class="bg-violet-500 text-gray-100 hover:bg-sky-400 
+            hover:text-black shadow-lg rounded-md w-32 h-7 text-lg focus:ring-violet-300 
              light:from-neutral-300 light:focus:outline-none light:focus:ring ring-2 ring-pink-300
              dark:bg-purple-500 dark:text-white dark:hover:bg-sky-400 dark:hover:text-black"
             aria-atomic="true"

@@ -1,16 +1,13 @@
 {
   "root": true,
-  "ignorePatterns": [
-    "projects/**/*"
-  ],
+  "ignorePatterns": ["projects/**/*"],
   "overrides": [
     {
-      "files": [
-        "*.ts"
-      ],
+      "files": ["*.ts"],
       "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
+        "plugin:@ngrx/recommended-requiring-type-checking",
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
         "plugin:prettier/recommended"
@@ -43,29 +40,16 @@
       }
     },
     {
-      "files": [
-        "*.html"
-      ],
+      "files": ["*.html"],
+      "excludedFiles": ["*inline-template-*.component.html"],
       "extends": [
         "plugin:@angular-eslint/template/recommended",
-        "plugin:@angular-eslint/template/accessibility"
-      ],
-      "rules": {
-        "quotes": "off"
-      }
-    },
-    {
-      "files": [
-        "*.html"
-      ],
-      "excludedFiles": [
-        "*inline-template-*.component.html"
-      ],
-      "extends": [
-        "plugin:@angular-eslint/template/recommended",
+        "plugin:@angular-eslint/template/accessibility",
         "plugin:prettier/recommended"
       ],
       "rules": {
+        "quotes": "off",
+        "printWidth": 100,
         "prettier/prettier": [
           0,
           {
@@ -74,14 +58,6 @@
           }
         ]
       }
-    },
-    {
-      "files": [
-        "*.ts"
-      ],
-      "extends": [
-        "plugin:@ngrx/recommended-requiring-type-checking"
-      ]
     }
   ]
 }

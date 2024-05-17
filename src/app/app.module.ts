@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { ErrorHandler, NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ButtonModule } from "primeng/button";
 import { BrowserModule } from "@angular/platform-browser";
@@ -7,9 +7,18 @@ import { AppComponent } from "./app.component";
 import { HeroesComponent } from "./heroes/heroes.component";
 import { HttpClientModule } from "@angular/common/http";
 import { StoreModule } from "@ngrx/store";
+import { GlobalErrorHandlerComponent } from "./core/global-error-handler/global-error-handler.component";
+import { GlobalToastComponent } from "@components/toasts/global-toast/global-toast.component";
+
 
 @NgModule({
   declarations: [],
+  providers: [
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandlerComponent,
+    },
+  ],
   imports: [
     CommonModule,
     AppComponent,

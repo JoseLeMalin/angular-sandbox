@@ -1,8 +1,11 @@
 <div>
   <h2>Messages</h2>
-
-  <div *ngFor="let message of messageService.messages">{{ message }}</div>
+  @for (message of messageService.messages; track message; let message = $index) {
+    <div>{{ message }}</div>
+  }
 </div>
 <div *ngIf="messageService.messages.length">
   <button type="button" class="clear" (click)="messageService.clear()">Clear messages</button>
+  
+  <!-- <button (click)="throwError()">Throw</button> -->
 </div>

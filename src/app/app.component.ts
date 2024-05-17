@@ -36,7 +36,13 @@ import { FooterComponent } from "./footer/footer.component";
     <app-footer></app-footer>
   `,
   styleUrl: "./app.component.css",
-  imports: [CommonModule, HomeComponent, RouterModule, HeaderComponent, FooterComponent],
+  imports: [
+    CommonModule,
+    HomeComponent,
+    RouterModule,
+    HeaderComponent,
+    FooterComponent,
+  ],
 })
 export class AppComponent {
   readonly router = inject(Router);

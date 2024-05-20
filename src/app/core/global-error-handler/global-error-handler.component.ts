@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, NgZone } from "@angular/core";
 import { ErrorHandler } from "@angular/core";
 
 /* Mastering Error Handling in Angular: A Comprehensive Guide
@@ -12,10 +12,16 @@ https://yon.fun/angular-error-handle/ */
   styleUrl: "./global-error-handler.component.css",
 })
 export class GlobalErrorHandlerComponent implements ErrorHandler {
-constructor() {}
+constructor(private zone: NgZone) {}
+
   handleError(error: Error) {
+    this.zone.run(() => {
+      console.log(error);
+      
+    })
+    console.error("Do we have anything here?")
     // Custom error handling logic
-    throw error;
+    // throw error;
   }
 
   // observable.pipe(

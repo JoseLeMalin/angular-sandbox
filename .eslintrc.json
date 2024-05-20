@@ -49,7 +49,6 @@
       ],
       "rules": {
         "quotes": "off",
-        "printWidth": 100,
         "prettier/prettier": [
           0,
           {

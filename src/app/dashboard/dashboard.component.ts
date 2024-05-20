@@ -14,10 +14,12 @@ import { Hero } from "../services/hero";
 import { selectError, selectLoading, selectUsers } from "../users/store/selectors";
 import { createUser, deleteUser, getUsers, updateUser } from "../users/store/actions";
 import dayjs from "dayjs";
+import { MessageService } from "primeng/api";
 
 @Component({
   selector: "app-dashboard",
   standalone: true,
+  providers: [UserService, MessageService],
   templateUrl: "./dashboard.component.html",
   styleUrls: ["./dashboard.component.css"],
   imports: [CommonModule, RouterModule, FormsModule, DividerModule, StoreModule],

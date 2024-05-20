@@ -65,7 +65,9 @@ export class AppComponent {
     this.location.back();
   }
   throwError() {
-    this.messageService.add({ severity: "success", summary: "Success", detail: "Message Content" });
+    this.messageService.add({ severity: "error", summary: "error", detail: "Message Content" });
+    throw(new Error('Throw error'))
+    // this.messageService.add({ severity: "success", summary: "Success", detail: "Message Content" });
   }
   onReject() {
     this.messageService.clear("confirm");

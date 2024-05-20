@@ -1,4 +1,4 @@
-import { ApplicationConfig, isDevMode } from "@angular/core";
+import { ApplicationConfig, ErrorHandler, isDevMode } from "@angular/core";
 import { provideRouter } from "@angular/router";
 import { provideProtractorTestingSupport } from "@angular/platform-browser";
 import routeConfig from "./app.routes";
@@ -10,6 +10,8 @@ import { provideEffects } from "@ngrx/effects";
 import { usersReducer } from "./users/store/reducer";
 import { UsersEffects } from "./users/store/effects";
 import { provideAnimations } from "@angular/platform-browser/animations";
+import { GlobalErrorHandlerComponent } from "./core/global-error-handler/global-error-handler.component";
+import { MessageService } from "primeng/api";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,5 +23,10 @@ export const appConfig: ApplicationConfig = {
     provideState({ name: "users", reducer: usersReducer }),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideEffects([UsersEffects]),
+    MessageService,
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandlerComponent
+    }
   ],
 };

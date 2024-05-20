@@ -7,15 +7,16 @@ import { HeaderComponent } from "./header/header.component";
 import { FooterComponent } from "./footer/footer.component";
 import { ToastModule } from "primeng/toast";
 import { MessageService } from "primeng/api";
+import { GlobalToastComponent } from "./components/toasts/global-toast/global-toast.component";
 
 @Component({
-  selector: "app-root",
-  standalone: true,
-  providers: [MessageService],
-  template: `
+    selector: "app-root",
+    standalone: true,
+    providers: [MessageService],
+    template: `
     <app-header></app-header>
-    <p-toast position="top-center" (onClose)="onReject()" />
-    <!-- <app-global-toast></app-global-toast> -->
+    <!-- <p-toast position="top-center" (onClose)="onReject()" /> -->
+    <app-global-toast></app-global-toast>
     <main class="main-container bg-gray-300">
       <section class="flex flex-col gap-4 border-2">
         <div *ngIf="router.url !== '/'" class="flex flex-column pb-2">
@@ -43,15 +44,16 @@ import { MessageService } from "primeng/api";
     </main>
     <app-footer></app-footer>
   `,
-  styleUrl: "./app.component.css",
-  imports: [
-    CommonModule,
-    HomeComponent,
-    ToastModule,
-    RouterModule,
-    HeaderComponent,
-    FooterComponent,
-  ],
+    styleUrl: "./app.component.css",
+    imports: [
+        CommonModule,
+        HomeComponent,
+        ToastModule,
+        RouterModule,
+        HeaderComponent,
+        FooterComponent,
+        GlobalToastComponent
+    ]
 })
 export class AppComponent {
   readonly router = inject(Router);
@@ -66,7 +68,7 @@ export class AppComponent {
   }
   throwError() {
     this.messageService.add({ severity: "error", summary: "error", detail: "Message Content" });
-    throw(new Error('Throw error'))
+    // throw(new Error('Throw error'))
     // this.messageService.add({ severity: "success", summary: "Success", detail: "Message Content" });
   }
   onReject() {

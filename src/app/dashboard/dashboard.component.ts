@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { DividerModule } from "primeng/divider";
-import { select, Store, StoreModule } from "@ngrx/store";
+import {  Store, StoreModule } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { v1 } from "uuid";
 
@@ -38,9 +38,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private readonly store: Store<AppStateInterface>
   ) {
-    this.isLoading$ = this.store.pipe(select(selectLoading));
-    this.usersBis$ = this.store.pipe(select(selectUsers));
-    this.error$ = this.store.pipe(select(selectError));
+    this.isLoading$ = this.store.select((selectLoading));
+    this.usersBis$ = this.store.select((selectUsers));
+    this.error$ = this.store.select((selectError));
   }
 
   callBackendAPI() {

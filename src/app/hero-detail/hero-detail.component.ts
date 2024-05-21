@@ -1,15 +1,16 @@
 import { CommonModule, NgIf, UpperCasePipe } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { Hero } from "../services/hero";
+import { ActivatedRoute } from "@angular/router";
 import { Component, Input, OnInit } from "@angular/core";
 import { CardModule } from "primeng/card";
+import { Hero } from "../services/hero";
 import { HeroService } from "../services/hero.service";
-import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-hero-detail",
   standalone: true,
   imports: [FormsModule, NgIf, UpperCasePipe, CardModule, CommonModule],
+  providers: [ActivatedRoute],
   templateUrl: "./hero-detail.component.html",
   styleUrl: "./hero-detail.component.css",
 })

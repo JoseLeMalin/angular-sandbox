@@ -7,7 +7,7 @@ import {
   provideHttpClientTesting,
 } from "@angular/common/http/testing";
 
-describe("httpErrorInterceptor", () => {
+describe("httpErrorInterceptor", async () => {
   const httpTestingController: HttpTestingController =
     TestBed.inject<HttpTestingController>(HttpTestingController);
   // const httpClient = TestBed.inject<HttpClient>(HttpClient);
@@ -18,8 +18,8 @@ describe("httpErrorInterceptor", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [httpErrorInterceptor, provideHttpClient(), provideHttpClientTesting()],
-    });
+      providers: [provideHttpClient(), provideHttpClientTesting()],
+    }).compileComponents();
     // httpTestingController = TestBed.inject<HttpTestingController>(HttpTestingController);
     // console.log(httpTestingController);
     //
@@ -32,11 +32,15 @@ describe("httpErrorInterceptor", () => {
   it("should be created", () => {
     expect(interceptor).toBeTruthy();
   });
-  it("Should trigger a request and the interceptor", () => {
+  it("Should trigger a request and the interceptor", async () => {
     const baseUrl: string = "https://jsonplaceholder.typicode.com/todos/1";
     // const httpTesting = TestBed.inject<HttpInterceptorFn>(httpErrorInterceptor);
     // const httpTesting = TestBed.inject(HttpTestingController);
     const req = httpTestingController.expectOne(baseUrl, "Request to load the configuration");
+    const result = await fetch(baseUrl, {
+      method: "GET",
+    }).then(result => result.json());
+    console.log("result jsoned:", result);
 
     expect(req.request.method).toBe("GET");
     // expect(req.request.method).toBe("GET");

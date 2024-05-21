@@ -20,7 +20,7 @@ import { MessageService } from 'primeng/api'
       provide: ErrorHandler,
       useClass: GlobalErrorHandlerComponent,
     },
-    MessageService
+    MessageService,
   ],
   imports: [
     CommonModule,

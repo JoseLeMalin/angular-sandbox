@@ -52,7 +52,7 @@ import { GlobalToastComponent } from "./components/toasts/global-toast/global-to
         RouterModule,
         HeaderComponent,
         FooterComponent,
-        GlobalToastComponent
+        GlobalToastComponent,
     ]
 })
 export class AppComponent {

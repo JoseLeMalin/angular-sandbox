@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { catchError, map, Observable, of, tap, throwError } from "rxjs";
+import { catchError, map, Observable, of, tap } from "rxjs";
 import { CreateUser, SchemaUser, SchemaUsers, UpdateUser, User } from "../users/users.model";
 import { MessageService } from "primeng/api";
 import { v4 } from "uuid";

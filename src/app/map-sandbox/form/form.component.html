@@ -1,6 +1,6 @@
 <p-tabView [style]="{ color: 'blue' }">
   <p-tabPanel header="Header I">
-    <form form #f="ngForm" [formGroup]="formGroupBuilt" (ngSubmit)="onSubmit()">
+    <form form #f="ngForm" [formGroup]="formGroupBuilt" (ngSubmit)="onSubmit($event)">
       <div formArrayName="cities" class="flex flex-col flex-wrap gap-2">
         @for (city of cities.controls; track cityIndex; let cityIndex = $index) {
           <div class="flex flex-col flex-wrap gap-2" [formGroupName]="cityIndex">
@@ -80,7 +80,7 @@
           </div>
         }
       </div>
-      <app-buttons (clickEvent)="functioncall($event)">Submit</app-buttons>
+      <app-buttons  type="submit" >Submit</app-buttons>
     </form>
     <p-divider />
     <div class="flex flex-row">

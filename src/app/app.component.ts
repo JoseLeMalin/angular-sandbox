@@ -10,15 +10,15 @@ import { MessageService } from "primeng/api";
 import { GlobalToastComponent } from "./components/toasts/global-toast/global-toast.component";
 
 @Component({
-    selector: "app-root",
-    standalone: true,
-    providers: [MessageService],
-    template: `
+  selector: "app-root",
+  standalone: true,
+  providers: [MessageService],
+  template: `
     <app-header></app-header>
     <!-- <p-toast position="top-center" (onClose)="onReject()" /> -->
     <app-global-toast></app-global-toast>
-    <main class="main-container bg-gray-300">
-      <section class="flex flex-col gap-4 border-2">
+    <main class="main-container bg-red-300">
+      <section class="flex flex-col gap-4 border-2 w-full h-full">
         <div *ngIf="router.url !== '/'" class="flex flex-column pb-2">
           <button
             pButton
@@ -34,9 +34,8 @@ import { GlobalToastComponent } from "./components/toasts/global-toast/global-to
             Back
           </button>
         </div>
-        <div class="router-outlet-class flex border-2 size-full border-cyan-700 bg-">
-          <router-outlet></router-outlet>
-        </div>
+
+        <router-outlet></router-outlet>
       </section>
       <div>
         <button (click)="throwError()">Throw</button>
@@ -44,16 +43,16 @@ import { GlobalToastComponent } from "./components/toasts/global-toast/global-to
     </main>
     <app-footer></app-footer>
   `,
-    styleUrl: "./app.component.css",
-    imports: [
-        CommonModule,
-        HomeComponent,
-        ToastModule,
-        RouterModule,
-        HeaderComponent,
-        FooterComponent,
-        GlobalToastComponent,
-    ]
+  styleUrl: "./app.component.css",
+  imports: [
+    CommonModule,
+    HomeComponent,
+    ToastModule,
+    RouterModule,
+    HeaderComponent,
+    FooterComponent,
+    GlobalToastComponent,
+  ],
 })
 export class AppComponent {
   readonly router = inject(Router);

@@ -11,6 +11,7 @@ import { GlobalErrorHandlerComponent } from "./core/global-error-handler/global-
 import { GlobalToastComponent } from "@components/toasts/global-toast/global-toast.component";
 import { ToastModule } from "primeng/toast";
 import { MessageService } from 'primeng/api'
+import { ComponentLibraryModule } from "@arcgis/map-components-angular";
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { MessageService } from 'primeng/api'
     StoreModule.forRoot({}),
     GlobalToastComponent,
     ToastModule,
+    ComponentLibraryModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.

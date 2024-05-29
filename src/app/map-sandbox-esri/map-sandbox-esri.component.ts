@@ -10,7 +10,7 @@ import { ComponentLibraryModule } from "@arcgis/map-components-angular";
   templateUrl: "./map-sandbox-esri.component.html",
   styleUrl: "./map-sandbox-esri.component.css",
 })
-export class MapSandboxEsriComponent implements OnInit {
+export class MapSandboxEsriComponent {
   map = new WebMap({
     basemap: "topo-vector",
   });
@@ -18,9 +18,9 @@ export class MapSandboxEsriComponent implements OnInit {
     console.log("MapView ready", event);
   }
   constructor() {}
-  ngOnInit(): void {
-    defineCustomElements(window, {
-      resourcesUrl: "https://js.arcgis.com/map-components/4.29/assets",
-    });
-  }
+  // ngOnInit(): void {
+  //   // defineCustomElements(window, {
+  //   //   resourcesUrl: "https://js.arcgis.com/map-components/4.29/assets",
+  //   // });
+  // }
 }

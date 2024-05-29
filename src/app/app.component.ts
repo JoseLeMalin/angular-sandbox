@@ -18,7 +18,7 @@ import { GlobalToastComponent } from "./components/toasts/global-toast/global-to
     <!-- <p-toast position="top-center" (onClose)="onReject()" /> -->
     <app-global-toast></app-global-toast>
     <main class="main-container bg-red-300">
-      <section class="flex flex-col gap-4 border-2 w-full h-full">
+      <section class="flex flex-col gap-4 border-2 w-full">
         <div *ngIf="router.url !== '/'" class="flex flex-column pb-2">
           <button
             pButton

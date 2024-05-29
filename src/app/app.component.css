@@ -1,8 +1,8 @@
 .main-container {
     display: flex;
     flex-direction: column;
-    height: 2000px;
-    margin: auto;
+    height: 90dvh;
+    margin: 0 1rem;
     align-items: center;
     justify-content: center;
 }

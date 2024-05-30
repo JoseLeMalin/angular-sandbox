@@ -10,7 +10,7 @@ export const initialState: MapEsriStateInterface = {
   error: null,
 };
 
-export const usersReducer = createReducer(
+export const mapEsriReducer = createReducer(
   initialState,
   // on(getUser, (state, action) => ({ ...state, id: action.userId, name: action.name, email: action.email })),
   on(

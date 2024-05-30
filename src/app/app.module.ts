@@ -29,12 +29,12 @@ import { ComponentLibraryModule } from "@arcgis/map-components-angular";
     ButtonModule,
     BrowserModule,
     BrowserAnimationsModule,
+    ComponentLibraryModule,
     HeroesComponent,
     HttpClientModule,
-    StoreModule.forRoot({}),
     GlobalToastComponent,
+    StoreModule.forRoot({}),
     ToastModule,
-    ComponentLibraryModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.

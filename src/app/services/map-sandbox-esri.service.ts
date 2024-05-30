@@ -22,7 +22,11 @@ export class MapSandboxEsriService {
   getArcGisApiKey() {
     return this.http.get(`http://localhost:3000/map-esri`, this.httpOptions).pipe(
       tap(item => console.log(`Get arcGis Api Key:`, item)),
-      map(responseMapEsri => SchemaArcGISApiKey.safeParse(responseMapEsri)),
+      // map(responseMapEsri => SchemaArcGISApiKey.safeParse(responseMapEsri)),
+      map(responseMapEsri => {
+        console.log("Reaching here responsemapapiskdbgshjbf: ", responseMapEsri);
+        
+        return SchemaArcGISApiKey.safeParse(responseMapEsri)}),
       map(responseParsed => {
         console.log("responseParsed getUsers: ", responseParsed);
 

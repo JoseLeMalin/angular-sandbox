@@ -1,3 +1,4 @@
+<h1>Esri Map</h1>
 <div #mapViewNode class="w-full h-2/3">
   <!-- <arcgis-map  (arcgisViewReadyChange)="arcgisViewReadyChange($event)">
     <arcgis-expand>
@@ -6,7 +7,7 @@
     <arcgis-legend position="bottom-left"></arcgis-legend>
   </arcgis-map> -->
 </div>
-@if (isLoading$ | async) {
+<!-- @if (isLoading$ | async) {
   <div>
     <p>Loading the api key</p>
   </div>
@@ -15,4 +16,6 @@
   <div>
     <p>Loaded the api key</p>
   </div>
-}
+} -->
+<div *ngIf="isLoading$ | async">is loading</div>
+<div *ngIf="(isLoading$ | async) === false">is loaded</div>

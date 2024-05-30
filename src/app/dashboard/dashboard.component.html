@@ -46,6 +46,7 @@
     Create user
   </button>
   <div *ngIf="isLoading$ | async">is loading</div>
+  <div *ngIf="(isLoading$ | async) === false">is loaded</div>
 
   <div class="flex flex-col gap-4" *ngIf="usersBis$ | async">
     <p>Dans le p</p>

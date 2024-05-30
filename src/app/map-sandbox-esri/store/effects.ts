@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
+import { map, mergeMap } from "rxjs";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import {
   getEsriApiKey,
   getEsriApiKeySuccess,
 } from "./actions";
-import { map, mergeMap } from "rxjs";
 import { MapSandboxEsriService } from "@services/map-sandbox-esri.service";
 
 @Injectable()
@@ -13,6 +13,8 @@ export class MapEsriEffects {
     return this.actions$.pipe(
       ofType(getEsriApiKey),
       mergeMap(() => {
+        console.log("Reaching le merge map ?");
+        
         return this.mapEsriService.getArcGisApiKey().pipe(map(arcGisApiKey => getEsriApiKeySuccess({ apiKey: arcGisApiKey })));
       })
     );

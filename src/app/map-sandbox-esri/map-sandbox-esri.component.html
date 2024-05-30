@@ -1,10 +1,18 @@
-<div #mapViewNode class="w-full h-2/3 " >
-
+<div #mapViewNode class="w-full h-2/3">
   <!-- <arcgis-map  (arcgisViewReadyChange)="arcgisViewReadyChange($event)">
     <arcgis-expand>
       <arcgis-search position="top-right"></arcgis-search>
     </arcgis-expand>
     <arcgis-legend position="bottom-left"></arcgis-legend>
   </arcgis-map> -->
-  
 </div>
+@if (isLoading$ | async) {
+  <div>
+    <p>Loading the api key</p>
+  </div>
+}
+@if ((isLoading$ | async) === false) {
+  <div>
+    <p>Loaded the api key</p>
+  </div>
+}

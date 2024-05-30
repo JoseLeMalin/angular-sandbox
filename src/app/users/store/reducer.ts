@@ -40,7 +40,7 @@ export const usersReducer = createReducer(
     getUsersSuccess,
     (state, action): UserStateInterface => ({
       ...state,
-      isLoading: true,
+      isLoading: false,
       users: [...state.users, ...action.users],
     })
   ),

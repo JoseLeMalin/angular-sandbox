@@ -84,23 +84,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     console.log("Init Dashboard");
-    // console.log("this.userBis$", this.usersBis$);
     this.store.dispatch(getUsers());
-    // this.store.dispatch(createUser({ userId: " v4()", name: "string", email: "string@string" }));
-    // this.store
-    //   .select(selectUsers)
-    //   .pipe(map(users => users))
-    //   .subscribe(item => (this.usersBis = item));
-    // this.users = selectUsers(initialState);
-    // this.getHeroes();
-    // this.userService.getUsers().subscribe(
-    //   {
-    //     // next: value => (this.users$ = value),
-    //     error: err => console.error("Observable emitted an error: " + err),
-    //     complete: () => console.log("Observable emitted the complete notification"),
-    //   }
-    //   //responseUsers => (this.users$ = responseUsers)
-    // );
+
   }
   ngOnDestroy(): void {
     console.log("Destroy Dashboard");

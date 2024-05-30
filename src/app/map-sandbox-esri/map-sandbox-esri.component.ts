@@ -4,17 +4,22 @@ import MapView from "@arcgis/core/views/MapView";
 import Expand from "@arcgis/core/widgets/Expand";
 import Bookmarks from "@arcgis/core/widgets/Bookmarks";
 import { AppStateInterface } from "../types/appState.interface";
-import { Store } from "@ngrx/store";
+import { Store, StoreModule } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { selectArcGISApiKey, selectError, selectLoading } from "./store/selectors";
 import { getEsriApiKey } from "./store/actions";
 import { CommonModule } from "@angular/common";
+import { MapSandboxEsriService } from "@services/map-sandbox-esri.service";
+import { ComponentLibraryModule } from "@arcgis/map-components-angular";
 // import { defineCustomElements } from "@arcgis/map-components/dist/loader";
 
 @Component({
   selector: "app-map-sandbox-esri",
   standalone: true,
-  imports: [CommonModule],
+  providers: [MapSandboxEsriService],
+  imports: [CommonModule, StoreModule,
+    ComponentLibraryModule,],
+  
   templateUrl: "./map-sandbox-esri.component.html",
   styleUrl: "./map-sandbox-esri.component.css",
 })
@@ -89,9 +94,9 @@ export class MapSandboxEsriComponent implements OnInit, OnDestroy {
 
     return this.view.when(() => console.log("mapView ready"));
   }
-  async ngOnInit(): Promise<void> {
+  ngOnInit(): void {
     this.store.dispatch(getEsriApiKey());
-    this.initializeMap();
+   // this.initializeMap();
   }
 
   ngOnDestroy(): void {

@@ -37,7 +37,7 @@ import { GlobalToastComponent } from "./components/toasts/global-toast/global-to
 
         <router-outlet></router-outlet>
       </section>
-      <div>
+      <div [style]="{ margin: '5%' }">
         <button (click)="throwError()">Throw</button>
       </div>
     </main>

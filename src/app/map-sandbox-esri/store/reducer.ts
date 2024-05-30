@@ -12,7 +12,6 @@ export const initialState: MapEsriStateInterface = {
 
 export const mapEsriReducer = createReducer(
   initialState,
-  // on(getUser, (state, action) => ({ ...state, id: action.userId, name: action.name, email: action.email })),
   on(
     getEsriApiKey,
     (state): MapEsriStateInterface => ({

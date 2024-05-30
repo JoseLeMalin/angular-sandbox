@@ -13,6 +13,8 @@ import { provideAnimations } from "@angular/platform-browser/animations";
 import { GlobalErrorHandlerComponent } from "./core/global-error-handler/global-error-handler.component";
 import { MessageService } from "primeng/api";
 import { httpErrorInterceptor } from "./core/http-error-interceptor.interceptor";
+import { MapEsriEffects } from "./map-sandbox-esri/store/effects";
+import { mapEsriReducer } from "./map-sandbox-esri/store/reducer";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -26,8 +28,9 @@ export const appConfig: ApplicationConfig = {
     provideStore(),
     provideAnimations(),
     provideState({ name: "users", reducer: usersReducer }),
+    provideState({ name: "arcGISApiKey", reducer: mapEsriReducer }),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
-    provideEffects([UsersEffects]),
+    provideEffects([UsersEffects, MapEsriEffects]),
     MessageService,
     {
       provide: ErrorHandler,

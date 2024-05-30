@@ -12,6 +12,7 @@ import { GlobalToastComponent } from "@components/toasts/global-toast/global-toa
 import { ToastModule } from "primeng/toast";
 import { MessageService } from 'primeng/api'
 import { ComponentLibraryModule } from "@arcgis/map-components-angular";
+import { EffectsModule } from "@ngrx/effects";
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { ComponentLibraryModule } from "@arcgis/map-components-angular";
     HttpClientModule,
     GlobalToastComponent,
     StoreModule.forRoot({}),
+    EffectsModule.forRoot(),
     ToastModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.

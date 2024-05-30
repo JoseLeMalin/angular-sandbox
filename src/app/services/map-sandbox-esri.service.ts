@@ -45,7 +45,7 @@ export class MapSandboxEsriService {
   private handleError<T>(operation = "operation", result?: T) {
     return (error: Error): Observable<T> => {
       // TODO: send the error to remote logging infrastructure
-      console.log("User Service - Error: ", error); // log to console instead
+      console.log("Map Sandbox Esri - Error: ", error); // log to console instead
 
       // TODO: better job of transforming error for user consumption
       this.log(`${operation} failed: ${error.message}`);

@@ -5,8 +5,10 @@ import { MessagesComponent } from "./messages/messages.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { HeroDetailComponent } from "./hero-detail/hero-detail.component";
 import { MapSandboxComponent } from "./map-sandbox/map-sandbox.component";
-import { MapSandboxEsriComponent } from "./map-sandbox-esri/map-sandbox-esri.component";
 
+
+// Routing and Lazy Loading with Angular’s Standalone Components
+// https://www.angulararchitects.io/en/blog/routing-and-lazy-loading-with-standalone-components/
 const routeConfig: Routes = [
   {
     // Root redirect to Dashboard page
@@ -46,7 +48,10 @@ const routeConfig: Routes = [
   },
   {
     path: "mapesri",
-    component: MapSandboxEsriComponent,
+    loadComponent: () => 
+      import('./map-sandbox-esri/map-sandbox-esri.component')
+          .then(m => m.MapSandboxEsriComponent),
+    // component: MapSandboxEsriComponent,
     title: "Map sandbox ESRI",
   },
 ];

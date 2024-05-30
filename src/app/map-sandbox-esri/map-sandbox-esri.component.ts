@@ -19,7 +19,8 @@ export class MapSandboxEsriComponent implements OnInit, OnDestroy {
   @ViewChild("mapViewNode", { static: true }) private mapViewEl!: ElementRef;
   // mapView: __esri.MapView;
   map = new WebMap({
-    basemap: "topo-vector",
+    // basemap: "topo-vector",
+    basemap: "hybrid",
   });
 
   arcgisViewReadyChange(event: Event) {
@@ -85,12 +86,9 @@ export class MapSandboxEsriComponent implements OnInit, OnDestroy {
     //
     // });
 
-    this.initializeMap().then(() => {
-      // The map has been initialized
-      console.log("The map is ready.");
-    });
+    this.initializeMap();
   }
-  
+
   ngOnDestroy(): void {
     console.log("The map is destroyed");
     if (this.view) {

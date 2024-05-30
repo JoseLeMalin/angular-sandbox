@@ -10,10 +10,10 @@ import { StoreModule } from "@ngrx/store";
 import { GlobalErrorHandlerComponent } from "./core/global-error-handler/global-error-handler.component";
 import { GlobalToastComponent } from "@components/toasts/global-toast/global-toast.component";
 import { ToastModule } from "primeng/toast";
-import { MessageService } from 'primeng/api'
+import { MessageService } from "primeng/api";
 import { ComponentLibraryModule } from "@arcgis/map-components-angular";
 import { EffectsModule } from "@ngrx/effects";
-
+import { usersReducer } from "./users/store/reducer";
 
 @NgModule({
   declarations: [],
@@ -31,11 +31,12 @@ import { EffectsModule } from "@ngrx/effects";
     BrowserModule,
     BrowserAnimationsModule,
     ComponentLibraryModule,
+    EffectsModule.forRoot(),
+    GlobalToastComponent,
     HeroesComponent,
     HttpClientModule,
-    GlobalToastComponent,
-    StoreModule.forRoot({}),
-    EffectsModule.forRoot(),
+    // StoreModule.forRoot({}),
+    StoreModule.forRoot({ users: usersReducer }),
     ToastModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.

@@ -14,7 +14,7 @@ import { GlobalErrorHandlerComponent } from "./core/global-error-handler/global-
 import { MessageService } from "primeng/api";
 import { httpErrorInterceptor } from "./core/http-error-interceptor.interceptor";
 import { MapEsriEffects } from "./map-sandbox-esri/store/effects";
-import { mapEsriReducer } from "./map-sandbox-esri/store/reducer";
+import { mapEsriFeature } from "./map-sandbox-esri/store/reducer";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,12 +25,12 @@ export const appConfig: ApplicationConfig = {
       // Interceptors order matters
       withInterceptors([httpErrorInterceptor])
     ),
-    provideStore(),
     provideAnimations(),
-    provideState({ name: "users", reducer: usersReducer }),
-    provideState({ name: "arcGISApiKey", reducer: mapEsriReducer }),
-    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideEffects([UsersEffects, MapEsriEffects]),
+    provideStore(),
+    provideState({ name: "users", reducer: usersReducer }),
+    provideState(mapEsriFeature),
+    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     MessageService,
     {
       provide: ErrorHandler,

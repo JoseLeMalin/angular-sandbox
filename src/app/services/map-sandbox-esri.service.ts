@@ -26,8 +26,6 @@ export class MapSandboxEsriService {
         tap(item => console.log(`Get arcGis Api Key:`, item)),
         map(responseMapEsri => SchemaArcGISApiKey.safeParse(responseMapEsri)),
         map(responseParsed => {
-          console.log("responseParsed getUsers: ", responseParsed);
-
           if (!responseParsed?.success) {
             throw new Error(responseParsed.error.message);
           }
@@ -45,7 +43,7 @@ export class MapSandboxEsriService {
       // TODO: send the error to remote logging infrastructure
       console.log("Map Sandbox Esri - Error: ", error); // log to console instead
 
-      // TODO: better job of transforming error for user consumption
+      // TODO: better job of transforming error for map esri consumption
       this.log(`${operation} failed: ${error.message}`);
 
       // Let the app keep running by returning an empty result.
@@ -54,7 +52,7 @@ export class MapSandboxEsriService {
   }
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
-    console.log("Here is an error log custom before user service", message);
+    console.log("Here is an error log custom before map sandbox esri service", message);
 
     this.messageService.add({
       key: v4(),

@@ -46,12 +46,12 @@ import { GlobalToastComponent } from "./components/toasts/global-toast/global-to
   styleUrl: "./app.component.css",
   imports: [
     CommonModule,
-    HomeComponent,
-    ToastModule,
-    RouterModule,
-    HeaderComponent,
     FooterComponent,
     GlobalToastComponent,
+    HomeComponent,
+    HeaderComponent,
+    RouterModule,
+    ToastModule,
   ],
 })
 export class AppComponent {

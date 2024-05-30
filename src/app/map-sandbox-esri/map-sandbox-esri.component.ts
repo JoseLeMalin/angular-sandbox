@@ -1,53 +1,61 @@
 import WebMap from "@arcgis/core/WebMap.js";
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, inject, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import MapView from "@arcgis/core/views/MapView";
 import Expand from "@arcgis/core/widgets/Expand";
 import Bookmarks from "@arcgis/core/widgets/Bookmarks";
-import { AppStateInterface } from "../types/appState.interface";
 import { Store, StoreModule } from "@ngrx/store";
-import { Observable } from "rxjs";
 import { selectArcGISApiKey, selectError, selectLoading } from "./store/selectors";
-import { getEsriApiKey } from "./store/actions";
 import { CommonModule } from "@angular/common";
 import { MapSandboxEsriService } from "@services/map-sandbox-esri.service";
 import { ComponentLibraryModule } from "@arcgis/map-components-angular";
+import { getEsriApiKey } from "./store/actions";
+
 // import { defineCustomElements } from "@arcgis/map-components/dist/loader";
 
 @Component({
   selector: "app-map-sandbox-esri",
   standalone: true,
   providers: [MapSandboxEsriService],
-  imports: [CommonModule, StoreModule,
-    ComponentLibraryModule,],
-  
-  templateUrl: "./map-sandbox-esri.component.html",
+  imports: [CommonModule, ComponentLibraryModule, StoreModule],
+  template: `
+    <h1>Esri Map</h1>
+    <div #mapViewNode class="w-full h-2/3">
+      <!-- <arcgis-map  (arcgisViewReadyChange)="arcgisViewReadyChange($event)">
+    <arcgis-expand>
+      <arcgis-search position="top-right"></arcgis-search>
+    </arcgis-expand>
+    <arcgis-legend position="bottom-left"></arcgis-legend>
+  </arcgis-map> -->
+      <!-- </div> -->
+      @if (isLoading$ | async) {
+        <div>
+          <p>Loading the api key</p>
+        </div>
+      }
+      @if ((isLoading$ | async) === false) {
+        <div>
+          <p>Loaded the api key</p>
+        </div>
+      }
+    </div>
+  `,
   styleUrl: "./map-sandbox-esri.component.css",
 })
 export class MapSandboxEsriComponent implements OnInit, OnDestroy {
+  private readonly store = inject(Store);
   public view!: MapView;
   private apiKey!: string;
-  private apiKeyBis$: Observable<string>;
-  error$: Observable<string | null>;
-  isLoading$: Observable<boolean>;
+  // private apiKeyBis$: Observable<string>;
+  // public error$: Observable<string | null>;
+  // public isLoading$: Observable<boolean>;
+  private apiKeyBis$ = this.store.select(selectArcGISApiKey);
+  public error$ = this.store.select(selectError);
+  public isLoading$ = this.store.select(selectLoading);
 
   // The <div> where we will place the map
   @ViewChild("mapViewNode", { static: true })
   private mapViewEl!: ElementRef;
-
-  constructor(private readonly store: Store<AppStateInterface>) {
-    this.isLoading$ = this.store.select(selectLoading);
-    this.apiKeyBis$ = this.store.select(selectArcGISApiKey) 
-    // this.store
-    //   .select(selectArcGISApiKey)
-    //   .subscribe(value => {
-    //     this.apiKey = value;
-    //     console.log("Dans le subscribe: ", this.apiKey);
-    //   })
-    //   .unsubscribe();
-    this.error$ = this.store.select(selectError);
-    console.log("Après le subscribe: ", this.apiKey);
-    console.log("Après le subscribethis.apiKeyBis$: ", this.apiKeyBis$);
-  }
+  constructor() {}
 
   initializeMap() {
     const container = this.mapViewEl.nativeElement;
@@ -96,7 +104,7 @@ export class MapSandboxEsriComponent implements OnInit, OnDestroy {
   }
   ngOnInit(): void {
     this.store.dispatch(getEsriApiKey());
-   // this.initializeMap();
+    this.initializeMap();
   }
 
   ngOnDestroy(): void {

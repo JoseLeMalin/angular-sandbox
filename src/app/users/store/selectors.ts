@@ -6,7 +6,11 @@ export interface FeatureState {
   counter: number;
 }
 export const selectStateUsers = (state: AppStateInterface) => state.users;
-export const selectLoading = createSelector(selectStateUsers, users => users.isLoading);
+export const selectLoading = createSelector(selectStateUsers, users => { 
+   console.log(" users", users);
+
+  return users.isLoading});
+
 export const selectUsers = createSelector(selectStateUsers, users => users.users);
 export const selectError = createSelector(selectStateUsers, users => users.error);
 

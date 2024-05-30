@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, inject, OnDestroy, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { FormsModule } from "@angular/forms";
@@ -7,7 +7,6 @@ import {  Store, StoreModule } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { v1 } from "uuid";
 
-import { AppStateInterface } from "../types/appState.interface";
 import { UserService } from "../services/user.service";
 import { Role, UpdateUser, User } from "../users/users.model";
 import { Hero } from "../services/hero";
@@ -25,7 +24,7 @@ import { MessageService } from "primeng/api";
   imports: [CommonModule, RouterModule, FormsModule, DividerModule, StoreModule],
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-  // private store = inject(Store);
+  private store = inject(Store);
   heroes: Hero[] = [];
   users!: User[];
   user!: User;
@@ -35,8 +34,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   isLoading$: Observable<boolean>;
 
   constructor(
-    private userService: UserService,
-    private readonly store: Store<AppStateInterface>
   ) {
     this.isLoading$ = this.store.select((selectLoading));
     this.usersBis$ = this.store.select((selectUsers));

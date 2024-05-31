@@ -9,6 +9,7 @@ import { CommonModule } from "@angular/common";
 import { MapSandboxEsriService } from "@services/map-sandbox-esri.service";
 import { ComponentLibraryModule } from "@arcgis/map-components-angular";
 import { getEsriApiKey } from "./store/actions";
+import { RouterModule } from "@angular/router";
 
 // import { defineCustomElements } from "@arcgis/map-components/dist/loader";
 
@@ -16,28 +17,25 @@ import { getEsriApiKey } from "./store/actions";
   selector: "app-map-sandbox-esri",
   standalone: true,
   providers: [MapSandboxEsriService],
-  imports: [CommonModule, ComponentLibraryModule, StoreModule],
+  imports: [CommonModule, ComponentLibraryModule, StoreModule, RouterModule],
   template: `
     <h1>Esri Map</h1>
-    <div #mapViewNode class="w-full h-2/3">
-      <!-- <arcgis-map  (arcgisViewReadyChange)="arcgisViewReadyChange($event)">
-    <arcgis-expand>
-      <arcgis-search position="top-right"></arcgis-search>
-    </arcgis-expand>
-    <arcgis-legend position="bottom-left"></arcgis-legend>
-  </arcgis-map> -->
-      <!-- </div> -->
-      @if (isLoading$ | async) {
-        <div>
-          <p>Loading the api key</p>
-        </div>
+
+    @if (isLoading$ | async) {
+      <div>Loading</div>
+    } @else {
+      @if ((apiKeyBis$ | async) !== "") {
+        <div>{{ apiKeyBis$ | async }}</div>
       }
-      @if ((isLoading$ | async) === false) {
-        <div>
-          <p>Loaded the api key</p>
-        </div>
-      }
-    </div>
+    }
+    <!-- <arcgis-map  (arcgisViewReadyChange)="arcgisViewReadyChange($event)">
+  <arcgis-expand>
+    <arcgis-search position="top-right"></arcgis-search>
+  </arcgis-expand>
+  <arcgis-legend position="bottom-left"></arcgis-legend>
+</arcgis-map> -->
+    <!-- </div> -->
+    <!-- <div #mapViewNode class="w-full h-2/3"></div> -->
   `,
   styleUrl: "./map-sandbox-esri.component.css",
 })
@@ -48,7 +46,7 @@ export class MapSandboxEsriComponent implements OnInit, OnDestroy {
   // private apiKeyBis$: Observable<string>;
   // public error$: Observable<string | null>;
   // public isLoading$: Observable<boolean>;
-  private apiKeyBis$ = this.store.select(selectArcGISApiKey);
+  public apiKeyBis$ = this.store.select(selectArcGISApiKey);
   public error$ = this.store.select(selectError);
   public isLoading$ = this.store.select(selectLoading);
 
@@ -104,11 +102,12 @@ export class MapSandboxEsriComponent implements OnInit, OnDestroy {
   }
   ngOnInit(): void {
     this.store.dispatch(getEsriApiKey());
-    this.initializeMap();
+    console.log("The map is inite", this.isLoading$);
+    // this.initializeMap();
   }
 
   ngOnDestroy(): void {
-    console.log("The map is destroyed");
+    console.log("The map is destroyed", this.isLoading$);
     if (this.view) {
       // destroy the map view
       this.view.destroy();

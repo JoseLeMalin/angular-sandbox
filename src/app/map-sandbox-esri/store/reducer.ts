@@ -10,7 +10,6 @@ export const initialState: MapEsriStateInterface = {
   error: null,
 };
 
-
 // https://blog.bitsrc.io/how-ive-set-up-ngrx-feature-based-in-angular-16-with-standalone-components-cfb03ee6496d
 export const mapEsriFeature = createFeature({
   name: "mapSandboxEsri",

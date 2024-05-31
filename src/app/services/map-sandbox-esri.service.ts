@@ -32,6 +32,7 @@ export class MapSandboxEsriService {
           if (!responseParsed?.data) {
             return "";
           }
+          console.log(`getArcGisApiKey responseParsed:`, responseParsed.data)
           return responseParsed.data;
         }),
         catchError(this.handleError<string>("getArcGisApiKey", ""))

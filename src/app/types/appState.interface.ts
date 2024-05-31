@@ -3,5 +3,5 @@ import { UserStateInterface } from "../users/users.model";
 
 export interface AppStateInterface {
   users: UserStateInterface;
-  arcGIS: MapEsriStateInterface;
+  mapSandboxEsri: MapEsriStateInterface;
 }

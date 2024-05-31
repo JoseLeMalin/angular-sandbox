@@ -7,6 +7,7 @@ import { HeroDetailComponent } from "./hero-detail/hero-detail.component";
 import { MapSandboxComponent } from "./map-sandbox/map-sandbox.component";
 import { provideState } from "@ngrx/store";
 import { mapEsriFeature } from "./map-sandbox-esri/store/reducer";
+import { MapSandboxEsriComponent } from "./map-sandbox-esri/map-sandbox-esri.component";
 
 // Routing and Lazy Loading with Angular’s Standalone Components
 // https://www.angulararchitects.io/en/blog/routing-and-lazy-loading-with-standalone-components/

@@ -3,17 +3,15 @@ import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { DividerModule } from "primeng/divider";
-import {  Store, StoreModule } from "@ngrx/store";
-import { Observable } from "rxjs";
+import { Store, StoreModule } from "@ngrx/store";
 import { v1 } from "uuid";
+import dayjs from "dayjs";
+import { MessageService } from "primeng/api";
 
 import { UserService } from "../services/user.service";
 import { Role, UpdateUser, User } from "../users/users.model";
-import { Hero } from "../services/hero";
 import { selectError, selectLoading, selectUsers } from "../users/store/selectors";
 import { createUser, deleteUser, getUsers, updateUser } from "../users/store/actions";
-import dayjs from "dayjs";
-import { MessageService } from "primeng/api";
 
 @Component({
   selector: "app-dashboard",
@@ -24,21 +22,18 @@ import { MessageService } from "primeng/api";
   imports: [CommonModule, RouterModule, FormsModule, DividerModule, StoreModule],
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-  private store = inject(Store);
-  heroes: Hero[] = [];
+  private readonly store = inject(Store);
   users!: User[];
   user!: User;
   // usersBis$ = this.store.select(selectUsers);
-  usersBis$: Observable<User[]>;
-  error$: Observable<string | null>;
-  isLoading$: Observable<boolean>;
+  // usersBis$: Observable<User[]>;
+  // error$: Observable<string | null>;
+  // isLoading$: Observable<boolean>;
+  isLoading$ = this.store.select(selectLoading);
+  usersBis$ = this.store.select(selectUsers);
+  error$ = this.store.select(selectError);
 
-  constructor(
-  ) {
-    this.isLoading$ = this.store.select((selectLoading));
-    this.usersBis$ = this.store.select((selectUsers));
-    this.error$ = this.store.select((selectError));
-  }
+  constructor() {}
 
   callBackendAPI() {
     // this.userService.getUsers().subscribe(response => (this.users = response));
@@ -82,9 +77,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     console.log("Init Dashboard");
     this.store.dispatch(getUsers());
-
   }
   ngOnDestroy(): void {
+    console.log("The dashboard is destroyed", this.isLoading$);
     console.log("Destroy Dashboard");
   }
 }

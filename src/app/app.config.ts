@@ -29,6 +29,8 @@ export const appConfig: ApplicationConfig = {
     provideEffects([UsersEffects, MapEsriEffects]),
     provideStore(),
     provideState({ name: "users", reducer: usersReducer }),
+    // provideState(mapEsriFeature),
+    // provideState({name: "arcGIS", reducer: mapEsriFeature.reducer}),
     provideState(mapEsriFeature),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     MessageService,

@@ -28,7 +28,6 @@ import { RouterModule } from "@angular/router";
         <div>{{ apiKeyBis$ | async }}</div>
       }
     }
-
     <!-- <arcgis-map  (arcgisViewReadyChange)="arcgisViewReadyChange($event)">
   <arcgis-expand>
     <arcgis-search position="top-right"></arcgis-search>

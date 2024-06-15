@@ -36,6 +36,7 @@ export const mapEsriFeature = createFeature({
         ...state,
         isLoading: false,
         error: action.error,
+        
       })
     )
   ),

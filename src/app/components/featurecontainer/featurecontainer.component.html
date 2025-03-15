@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>Dynamic Component with NgModule Example</h1>
+
+  <div class="controls">
+    <button (click)="loadFeatureComponent()">Load Feature Component</button>
+  </div>
+
+  <div class="dynamic-container">
+    <ng-container
+      *ngComponentOutlet="componentType; ngModule: componentModule; injector: customInjector">
+    </ng-container>
+  </div>
+</div>

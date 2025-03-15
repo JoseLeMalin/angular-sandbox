@@ -1,0 +1,16 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: Arial, sans-serif;
+  }
+  
+  .controls {
+    margin-bottom: 1rem;
+  }
+  
+  .dynamic-container {
+    border: 1px dashed #ccc;
+    padding: 1rem;
+    min-height: 100px;
+  }

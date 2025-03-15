@@ -8,6 +8,7 @@ import { MapSandboxComponent } from "./map-sandbox/map-sandbox.component";
 import { provideState } from "@ngrx/store";
 import { mapEsriFeature } from "./map-sandbox-esri/store/reducer";
 import { MapSandboxEsriComponent } from "./map-sandbox-esri/map-sandbox-esri.component";
+import { FeaturecontainerComponent } from "@components/featurecontainer/featurecontainer.component";
 
 // Routing and Lazy Loading with Angular’s Standalone Components
 // https://www.angulararchitects.io/en/blog/routing-and-lazy-loading-with-standalone-components/
@@ -47,6 +48,11 @@ const routeConfig: Routes = [
     path: "map",
     component: MapSandboxComponent,
     title: "Map sandbox",
+  },
+  {
+    path: "outlet",
+    component: FeaturecontainerComponent,
+    title: "Feature Outlet",
   },
   {
     path: "mapesri",

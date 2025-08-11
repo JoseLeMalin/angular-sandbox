@@ -1,7 +1,5 @@
 {
-  "root": true,
-
-  
+  "root": true,  
   "ignorePatterns": ["projects/**/*"],
   "overrides": [
     {

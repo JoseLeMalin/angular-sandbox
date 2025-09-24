@@ -9,6 +9,7 @@ import { ActivatedRoute } from "@angular/router";
 @Component({
   selector: "app-hero-detail",
   standalone: true,
+  providers: [ActivatedRoute],
   imports: [FormsModule, NgIf, UpperCasePipe, CardModule, CommonModule],
   templateUrl: "./hero-detail.component.html",
   styleUrl: "./hero-detail.component.css",

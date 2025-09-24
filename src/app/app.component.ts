@@ -7,6 +7,7 @@ import { HeaderComponent } from "./header/header.component";
 import { FooterComponent } from "./footer/footer.component";
 import { ToastModule } from "primeng/toast";
 import { MessageService } from "primeng/api";
+import { GlobalToastComponent } from "./components/toasts/global-toast/global-toast.component";
 
 @Component({
   selector: "app-root",
@@ -14,10 +15,10 @@ import { MessageService } from "primeng/api";
   providers: [MessageService],
   template: `
     <app-header></app-header>
-    <p-toast position="top-center" (onClose)="onReject()" />
-    <!-- <app-global-toast></app-global-toast> -->
-    <main class="main-container bg-gray-300">
-      <section class="flex flex-col gap-4 border-2">
+    <!-- <p-toast position="top-center" (onClose)="onReject()" /> -->
+    <app-global-toast></app-global-toast>
+    <main class="main-container bg-red-300">
+      <section class="flex flex-col gap-4 border-2 w-full">
         <div *ngIf="router.url !== '/'" class="flex flex-column pb-2">
           <button
             pButton
@@ -33,11 +34,10 @@ import { MessageService } from "primeng/api";
             Back
           </button>
         </div>
-        <div class="router-outlet-class flex border-2 size-full border-cyan-700 bg-">
-          <router-outlet></router-outlet>
-        </div>
+
+        <router-outlet></router-outlet>
       </section>
-      <div>
+      <div [style]="{ margin: '5%' }">
         <button (click)="throwError()">Throw</button>
       </div>
     </main>
@@ -46,11 +46,12 @@ import { MessageService } from "primeng/api";
   styleUrl: "./app.component.css",
   imports: [
     CommonModule,
-    HomeComponent,
-    ToastModule,
-    RouterModule,
-    HeaderComponent,
     FooterComponent,
+    GlobalToastComponent,
+    HomeComponent,
+    HeaderComponent,
+    RouterModule,
+    ToastModule,
   ],
 })
 export class AppComponent {
@@ -65,7 +66,9 @@ export class AppComponent {
     this.location.back();
   }
   throwError() {
-    this.messageService.add({ severity: "success", summary: "Success", detail: "Message Content" });
+    this.messageService.add({ severity: "error", summary: "error", detail: "Message Content" });
+    // throw(new Error('Throw error'))
+    // this.messageService.add({ severity: "success", summary: "Success", detail: "Message Content" });
   }
   onReject() {
     this.messageService.clear("confirm");

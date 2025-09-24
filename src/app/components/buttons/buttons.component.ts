@@ -13,6 +13,7 @@ export class ButtonsComponent {
   // });
   @Input() disabled: boolean = false;
   @Input() label!: string;
+  @Input() type!: string;
   @Output() clickEvent = new EventEmitter<MouseEvent>();
 
   constructor() {

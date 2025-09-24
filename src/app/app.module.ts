@@ -6,12 +6,11 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppComponent } from "./app.component";
 import { HeroesComponent } from "./heroes/heroes.component";
 import { HttpClientModule } from "@angular/common/http";
-import { StoreModule } from "@ngrx/store";
 import { GlobalErrorHandlerComponent } from "./core/global-error-handler/global-error-handler.component";
 import { GlobalToastComponent } from "@components/toasts/global-toast/global-toast.component";
 import { ToastModule } from "primeng/toast";
-import { MessageService } from 'primeng/api'
-
+import { MessageService } from "primeng/api";
+import { ComponentLibraryModule } from "@arcgis/map-components-angular";
 
 @NgModule({
   declarations: [],
@@ -20,7 +19,7 @@ import { MessageService } from 'primeng/api'
       provide: ErrorHandler,
       useClass: GlobalErrorHandlerComponent,
     },
-    MessageService
+    MessageService,
   ],
   imports: [
     CommonModule,
@@ -28,10 +27,12 @@ import { MessageService } from 'primeng/api'
     ButtonModule,
     BrowserModule,
     BrowserAnimationsModule,
+    ComponentLibraryModule,
+    GlobalToastComponent,
     HeroesComponent,
     HttpClientModule,
-    StoreModule.forRoot({}),
-    GlobalToastComponent,
+    // StoreModule.forRoot({}),
+    // StoreModule.forRoot({ users: usersReducer, "arcGIS": mapEsriFeature.reducer }),
     ToastModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.

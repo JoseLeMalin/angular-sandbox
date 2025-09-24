@@ -49,6 +49,21 @@ export class MapSandboxComponent implements AfterViewInit {
     this.markerService.makeCapitalMarkers(this.map);
   }
 
+  submitEvent(
+    event: Partial<{
+      cities: Partial<{
+        cityName: string;
+        population: string;
+        coordinates: Partial<{
+          latitude: string;
+          longitude: string;
+        }>;
+      }>[];
+    }>
+  ) {
+    console.log("In the mapsandbox", event);
+  }
+
   ngAfterViewInit(): void {
     this.initMap();
   }

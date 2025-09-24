@@ -65,3 +65,14 @@ pnpm install -D tailwindcss postcss autoprefixer
 
 ## Quicktype
         https://quicktype.io/
+
+## Interceptors
+        Set up Interceptor functions:
+        https://medium.com/@mohsinogen/angular-17-http-interceptors-guide-417e7c8ffada
+
+        Angular Doc:
+        https://angular.dev/guide/http/interceptors
+
+## Caching
+        Caching using a Hashmap
+        https://medium.com/@juannegrin/boosting-your-angular-app-performance-with-caching-a-beginners-guide-768b93284000

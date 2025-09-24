@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, map, Observable, of, tap } from "rxjs";
-import { MessageService } from "./message.service";
 import { CreateUser, SchemaUser, SchemaUsers, UpdateUser, User } from "../users/users.model";
+import { MessageService } from "primeng/api";
+import { v4 } from "uuid";
 
 @Injectable({
   providedIn: "root",
@@ -86,8 +87,7 @@ export class UserService {
   private handleError<T>(operation = "operation", result?: T) {
     return (error: Error): Observable<T> => {
       // TODO: send the error to remote logging infrastructure
-      console.log("Here is an error", error); // log to console instead
-      console.error(error); // log to console instead
+      console.log("User Service - Error: ", error); // log to console instead
 
       // TODO: better job of transforming error for user consumption
       this.log(`${operation} failed: ${error.message}`);
@@ -98,6 +98,14 @@ export class UserService {
   }
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
-    this.messageService.add(`HeroService: ${message}`);
+    console.log("Here is an error log custom before user service", message);
+
+    this.messageService.add({
+      key: v4(),
+      life: 3000,
+      severity: "error",
+      summary: "error",
+      detail: message,
+    });
   }
 }

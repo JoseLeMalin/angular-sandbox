@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Output } from "@angular/core";
 import {
   AbstractControl,
   FormArray,
@@ -43,6 +43,8 @@ const asyncRowValidator = (control: AbstractControl): Observable<ValidationError
 })
 export class FormComponent {
   formBuilder = inject(NonNullableFormBuilder);
+  @Output() submitEvent = new EventEmitter();
+
   constructor() {}
 
   formGroupBuilt: FormTest = this.formBuilder.group({
@@ -66,6 +68,13 @@ export class FormComponent {
 
   functioncall(e: MouseEvent) {
     console.log("event in the functioncall parent", this.formGroupBuilt.value, e);
+    console.log("Form submitted", this.formGroupBuilt.value);
+    this.submitEvent.emit(this.formGroupBuilt.value);
+  }
+  onSubmit(e: MouseEvent) {
+    console.log("event in the functioncall parent", this.formGroupBuilt.value, e);
+    console.log("Form submitted", this.formGroupBuilt.value);
+    this.submitEvent.emit(this.formGroupBuilt.value);
   }
 
   onChange(event: Event) {
@@ -80,9 +89,6 @@ export class FormComponent {
     }
   }
 
-  onSubmit() {
-    console.log("Form submitted", this.formGroupBuilt.value);
-  }
 }
 
 // atomic way to create form

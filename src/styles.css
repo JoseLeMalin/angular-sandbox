@@ -16,13 +16,12 @@ h1 {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: lighter;
   }
-/*   body {
-    margin: 2em;
-  } */
+  body {
+    overflow: auto;
+  }
   body, input[type="text"], button {
     color: #333;
-    /* height: max-content; */
-    overflow: auto;
+    /* height: screen;  */
     font-family: Cambria, Georgia, serif;
   }
 /*   button {

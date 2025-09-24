@@ -5,7 +5,7 @@ import { Observable, of } from "rxjs";
 import { catchError, map, tap } from "rxjs/operators";
 
 import { Hero } from "./hero";
-import { MessageService } from "./message.service";
+import { MessageService } from "primeng/api";
 
 @Injectable({ providedIn: "root" })
 export class HeroService {
@@ -104,13 +104,14 @@ export class HeroService {
    * @param result - optional value to return as the observable result
    */
   private handleError<T>(operation = "operation", result?: T) {
+    console.log("Here is an error handleError hero service", operation);
+    this.log(`${operation} failed: ${result}`);
     return (error: Error): Observable<T> => {
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
-
+      
       // TODO: better job of transforming error for user consumption
       this.log(`${operation} failed: ${error.message}`);
-
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
@@ -118,6 +119,15 @@ export class HeroService {
 
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
-    this.messageService.add(`HeroService: ${message}`);
+    console.log("Here is an error log custom before hero service", message);
+    
+    this.messageService.add({
+      key: "udfhdsufi",
+      life: 3000,
+      severity: "error",
+      summary: "error",
+      detail: message,
+    });
+    // this.messageService.add(`HeroService: ${message}`);
   }
 }

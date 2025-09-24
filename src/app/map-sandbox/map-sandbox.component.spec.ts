@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-
 import { MapSandboxComponent } from "./map-sandbox.component";
+// import { By } from "@angular/platform-browser";
 
 describe("MapSandboxComponent", () => {
   let component: MapSandboxComponent;
@@ -18,5 +18,9 @@ describe("MapSandboxComponent", () => {
 
   it("should create", () => {
     expect(component).toBeTruthy();
+  });
+  it("should create", () => {
+    // const formContainer = fixture.debugElement.query(By.css('[data-testid="form-container"]'));
+    // expect(formContainer.nativeElement).toBeFalsy();
   });
 });

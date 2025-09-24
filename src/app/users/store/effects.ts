@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import {
   createUser,
@@ -13,11 +13,17 @@ import { UserService } from "../../services/user.service";
 
 @Injectable()
 export class UsersEffects {
+  private actions$ = inject(Actions);
+  private usersService = inject(UserService);
+
+  constructor() {}
   getUsers$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(getUsers),
       mergeMap(() => {
-        return this.usersService.getUsers().pipe(map(users => getUsersSuccess({ users: users })));
+        return this.usersService.getUsers().pipe(
+          map(users => getUsersSuccess({ users: users }))
+        );
       })
     );
   });
@@ -41,9 +47,5 @@ export class UsersEffects {
       })
     );
   });
-  constructor(
-    private actions$: Actions,
-    private usersService: UserService
-  ) {}
 }
 // https://www.youtube.com/watch?v=SkoI_VHtcTU&t=642s

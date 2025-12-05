@@ -15,6 +15,7 @@ export class FeaturecontainerComponent {
   componentModule: any = null;
   customInjector: Injector;
 
+
   constructor(private injector: Injector) {
     // Create custom injector with additional data
     this.customInjector = Injector.create({
